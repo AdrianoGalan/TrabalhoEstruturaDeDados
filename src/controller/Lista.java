@@ -2,13 +2,13 @@ package controller;
 
 import model.Peca;
 
-public class ListaPeca {
+public class Lista {
 
     private No inicio;
     private No aux;
     private int numerosElementos;
 
-    public ListaPeca() {
+    public Lista() {
 
         this.inicio = null;
         numerosElementos = 0;
@@ -32,15 +32,13 @@ public class ListaPeca {
         //verifica se o elemento a ser inserido na lista é "menor" quero o elemento na posição inicio caso verdade
         //insere novo elemento na posição inicio e muda a referencia para ele apontar para o próximo
         if (inicio.getElemento().getNome().compareTo(novo.getElemento().getNome()) > 0) {
-           
-            
+
             inicio.getAnterior().setProximo(novo);
             novo.setAnterior(inicio.getAnterior());
             inicio.setAnterior(novo);
             novo.setProximo(inicio);
             inicio = novo;
 
- 
             return;
 
         }
@@ -66,28 +64,76 @@ public class ListaPeca {
         }
 
         //troca de posição o novo nó e o aux;
-            novo.setProximo(aux.getProximo());
-            aux.getProximo().setAnterior(novo);
-            novo.setAnterior(aux);
-            aux.setProximo(novo);
+        novo.setProximo(aux.getProximo());
+        aux.getProximo().setAnterior(novo);
+        novo.setAnterior(aux);
+        aux.setProximo(novo);
 
-        
     }
-    
+
+    //metodo para remover um elemento
+    public void remove(int id) {
+
+        //verifica se a lista esta vazia
+        if (!isEmpty()) {
+
+            // verifica se o elemento a ser removido é o primeiro
+            if (inicio.getElemento().getId() == id) {
+				
+				if(inicio.getProximo()	 == inicio){
+					
+					inicio = null;
+					this.numerosElementos--;
+					return;
+					
+				}
+				
+                inicio.getAnterior().setProximo(inicio.getProximo());
+                inicio.getProximo().setAnterior(inicio.getAnterior());
+                inicio = inicio.getProximo();
+                this.numerosElementos--;
+                return;
+            }
+
+            aux = inicio;
+
+            // percorre lista na procura do elemento
+            while (aux.getProximo() != inicio && aux.getElemento().getId() != id) {
+
+                aux = aux.getProximo();
+            }
+
+            // remove o elemento da lista
+            if (aux.getElemento().getId() == id) {
+
+                aux.getAnterior().setProximo(aux.getProximo());
+                aux.getProximo().setAnterior(aux.getAnterior());
+                this.numerosElementos--;
+                return;
+
+            }
+
+            System.out.println("Elemento não encontrado na lista");
+
+        } else {
+            System.out.println("Não existe elementos na lista");
+        }
+
+    }
 
     public void printList() {
 
         if (!isEmpty()) {
             aux = inicio;
-            while (aux.getProximo()!= inicio) {
+            while (aux.getProximo() != inicio) {
                 System.out.println("[Id-" + aux.getElemento().getId() + " nome- "
                         + aux.getElemento().getNome() + "] ");
 
                 aux = aux.getProximo();
             }
             System.out.println("[Id-" + aux.getElemento().getId() + " nome- "
-                        + aux.getElemento().getNome() + "] ");
-            
+                    + aux.getElemento().getNome() + "] ");
+
             System.out.println("Total de Elementos = " + numerosElementos);
 
         } else {
@@ -104,7 +150,5 @@ public class ListaPeca {
     public int getNumerosElementos() {
         return numerosElementos;
     }
-
-  
 
 }
