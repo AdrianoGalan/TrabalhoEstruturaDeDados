@@ -18,7 +18,25 @@ public abstract class EstruturaDianmica {
     protected abstract void insert(Peca elemento);
 
     //metodo para remover um elemento
-    protected abstract void remove();
+    public void remove() {
+
+        if (!isEmpty()) {
+            if (inicio.getProximo() == inicio) {
+
+                inicio = null;
+                this.numerosElementos--;
+                return;
+            }
+
+            inicio.getAnterior().setProximo(inicio.getProximo());
+            inicio.getProximo().setAnterior(inicio.getAnterior());
+            inicio = inicio.getProximo();
+            this.numerosElementos--;
+
+        }
+
+    }
+
 
     public Peca search(int id) {
 

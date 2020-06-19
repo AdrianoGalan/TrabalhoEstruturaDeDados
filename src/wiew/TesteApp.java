@@ -7,15 +7,16 @@ package wiew;
 
 import controller.Fila;
 import controller.Lista;
+import controller.Pilha;
 import model.Peca;
 
 public class TesteApp {
 
     public static void main(String[] args) {
 
-        Fila pecas = new Fila();
+        Pilha pecas = new Pilha();
         
-        Lista lista = new Lista();
+        
         
       
         pecas.insert(new Peca(0, "e", 2.0));
@@ -24,7 +25,7 @@ public class TesteApp {
         pecas.insert(new Peca(1, "d", 2.2));
         pecas.printList();
 //        System.err.println("2");
-        pecas.insert(new Peca(2, "Adriano", 3.9));
+        pecas.insert(new Peca(2, "f", 3.9));
         pecas.printList();
 ////        System.err.println("3");
         pecas.insert(new Peca(3, "c", 3.0));
@@ -54,31 +55,31 @@ public class TesteApp {
         System.out.println(pecas.search("Adriano"));
         
 
-//       System.err.println("Remove elemento");
-//        pecas.remove();
-//        System.out.println(pecas.search(0));
-//        pecas.printList();
-//        System.err.println("Remove elemento");
-//         pecas.remove();
-//        pecas.printList();
-//        System.err.println("Remove elemento");
-//         pecas.remove();
-//        pecas.printList();
-//        System.err.println("Remove elemento");
-//        pecas.remove();
-//        pecas.printList();
-//	System.err.println("Remove elemento");
-//        pecas.remove();
-//        pecas.printList();
-//        System.err.println("Remove elemento");
-//         pecas.remove();
-//        pecas.printList();
-//        System.err.println("Remove elemento 5");
-//        pecas.remove();
-//        pecas.printList();
-//        System.err.println("Remove elemento 5");
-//         pecas.remove();
-//        pecas.printList();
+       System.err.println("Remove elemento");
+        pecas.remove();
+        System.out.println(pecas.search(0));
+        pecas.printList();
+        System.err.println("Remove elemento");
+         pecas.remove();
+        pecas.printList();
+        System.err.println("Remove elemento");
+         pecas.remove();
+        pecas.printList();
+        System.err.println("Remove elemento");
+        pecas.remove();
+        pecas.printList();
+	System.err.println("Remove elemento");
+        pecas.remove();
+        pecas.printList();
+        System.err.println("Remove elemento");
+         pecas.remove();
+        pecas.printList();
+        System.err.println("Remove elemento 5");
+        pecas.remove();
+        pecas.printList();
+        System.err.println("Remove elemento 5");
+         pecas.remove();
+        pecas.printList();
         
         
 

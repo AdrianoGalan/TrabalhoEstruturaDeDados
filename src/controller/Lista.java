@@ -96,25 +96,7 @@ public class Lista extends EstruturaDianmica {
 
     }
 
-    @Override
-    public void remove() {
-        
-        if (!isEmpty()) {
-            if (inicio.getProximo() == inicio) {
-
-                inicio = null;
-                this.numerosElementos--;
-                return;
-            }
-
-            inicio.getAnterior().setProximo(inicio.getProximo());
-            inicio.getProximo().setAnterior(inicio.getAnterior());
-            inicio = inicio.getProximo();
-            this.numerosElementos--;
-
-        }
-
-    }
+    
 
     //metodo para remover um elemento
     public void remove(int id) {
