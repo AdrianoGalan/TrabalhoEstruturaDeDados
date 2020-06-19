@@ -2,16 +2,9 @@ package controller;
 
 import model.Peca;
 
-public class Lista {
-
-    private No inicio;
-    private No aux;
-    private int numerosElementos;
+public class Lista extends EstruturaDianmica {
 
     public Lista() {
-
-        this.inicio = null;
-        numerosElementos = 0;
     }
 
     // Método para inserir novo elemento na lista em ordem Alfabética, classificando pelo nome da peça
@@ -72,6 +65,7 @@ public class Lista {
     }
 
     // Método para inserir novo elemento na lista 
+    @Override
     public void insert(Peca elemento) {
 
         //cria novo nó para inserir o novo elemento
@@ -102,8 +96,28 @@ public class Lista {
 
     }
 
+    @Override
+    public void remove() {
+        
+        if (!isEmpty()) {
+            if (inicio.getProximo() == inicio) {
+
+                inicio = null;
+                this.numerosElementos--;
+                return;
+            }
+
+            inicio.getAnterior().setProximo(inicio.getProximo());
+            inicio.getProximo().setAnterior(inicio.getAnterior());
+            inicio = inicio.getProximo();
+            this.numerosElementos--;
+
+        }
+
+    }
+
     //metodo para remover um elemento
-    public void remove(int id) {
+    public void removeById(int id) {
 
         //verifica se a lista esta vazia
         if (!isEmpty()) {
@@ -150,36 +164,6 @@ public class Lista {
             System.out.println("Não existe elementos na lista");
         }
 
-    }
-
-    public void printList() {
-
-        if (!isEmpty()) {
-            aux = inicio;
-            while (aux.getProximo() != inicio) {
-                System.out.println("[Id-" + aux.getElemento().getId() + " nome- "
-                        + aux.getElemento().getNome() + "] ");
-
-                aux = aux.getProximo();
-            }
-            System.out.println("[Id-" + aux.getElemento().getId() + " nome- "
-                    + aux.getElemento().getNome() + "] ");
-
-            System.out.println("Total de Elementos = " + numerosElementos);
-
-        } else {
-            System.out.println("Não existe elementos na lista");
-        }
-
-    }
-
-    public boolean isEmpty() {
-
-        return this.inicio == null;
-    }
-
-    public int getNumerosElementos() {
-        return numerosElementos;
     }
 
 }
