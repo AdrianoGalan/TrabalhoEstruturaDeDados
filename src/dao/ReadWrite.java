@@ -11,7 +11,7 @@ import java.util.logging.Logger;
 
 public class ReadWrite {
 
-    final String ENTRADA_DADOS = "txt/entradaDados.txt";
+    final String ENTRADA_DADOS = "txt/entradaDados100.txt";
 
     //escreve Pessoa arquivo txt
     public void write(EstruturaDianmica objetoGravar) {

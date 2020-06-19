@@ -20,7 +20,7 @@ public class TesteApp {
         GerarDadosEntrada gerar = new GerarDadosEntrada();
         
       
-        rw.write(gerar.gerarDados(500000));
+        rw.write(gerar.gerarDados(100000));
 
     }
 }
