@@ -1,51 +1,76 @@
 package dao;
 
-
 import controller.EstruturaDianmica;
-import java.io.BufferedReader;
+import controller.No;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class ReadWrite {
 
     final String ENTRADA_DADOS = "txt/entradaDados.txt";
-   
 
     //escreve Pessoa arquivo txt
-    public void writePessoa(EstruturaDianmica objetoGravar) {
-        
-        File f = new File("txt/teste2.txt");
-        
+    public void write(EstruturaDianmica objetoGravar) {
+
+        File file = new File(ENTRADA_DADOS);
 
         BufferedWriter writer;
 
         try {
-            
-            f.createNewFile();
-            
-            writer = new BufferedWriter(new FileWriter("txt/teste2.txt"));
 
-            if(objetoGravar.getInicio().getProximo() == objetoGravar.getInicio()){
-               
-                writer.write(objetoGravar.getInicio().getElemento().toString());
-                writer.newLine();
-                
-                
-            }
-                                    
+            file.createNewFile();
+
+            writer = new BufferedWriter(new FileWriter(ENTRADA_DADOS));
+
+            writer.write(returnSave(objetoGravar));
+            writer.newLine();
 
             writer.close();
 
         } catch (IOException ex) {
             Logger.getLogger(ReadWrite.class.getName()).log(Level.SEVERE, null, ex);
         }
+
+    }
+
+    private String returnSave(EstruturaDianmica objetoGravar) {
+
+        StringBuilder saida = new StringBuilder();
+
+        No aux = objetoGravar.getInicio();
+
+        saida.append(objetoGravar.getInicio().getElemento().getId());
+        saida.append(";");
+        saida.append(objetoGravar.getInicio().getElemento().getNome());
+        saida.append(";");
+        saida.append(objetoGravar.getInicio().getElemento().getMarca());
+        saida.append(";");
+        saida.append(objetoGravar.getInicio().getElemento().getModelo());
+        saida.append(";");
+        saida.append(objetoGravar.getInicio().getElemento().getPreco());
+        saida.append("\n");
+
+        while (aux.getProximo() != objetoGravar.getInicio()) {
+
+            aux = aux.getProximo();
+            saida.append(aux.getElemento().getId());
+            saida.append(";");
+            saida.append(aux.getElemento().getNome());
+            saida.append(";");
+            saida.append(aux.getElemento().getMarca());
+            saida.append(";");
+            saida.append(aux.getElemento().getModelo());
+            saida.append(";");
+            saida.append(aux.getElemento().getPreco());
+            saida.append("\n");
+
+        }
+
+        return saida.toString();
 
     }
 
@@ -94,5 +119,4 @@ public class ReadWrite {
 //        }
 //
 //    }
-
 }

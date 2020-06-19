@@ -21,6 +21,15 @@ public class Peca {
         this.preco = preco;
     }
 
+    public Peca(int id, double preco, String marca, String nome, String modelo) {
+        this.id = id;
+        this.preco = preco;
+        this.marca = marca;
+        this.nome = nome;
+        this.modelo = modelo;
+    }
+    
+
     @Override
     public String toString() {
         return "Peca{" + "id=" + id + ", preco=" + preco + ", nome=" + nome + '}';
