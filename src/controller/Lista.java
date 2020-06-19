@@ -15,7 +15,7 @@ public class Lista {
     }
 
     // Método para inserir novo elemento na lista em ordem Alfabética, classificando pelo nome da peça
-    public void insert(Peca elemento) {
+    public void insertOrder(Peca elemento) {
 
         //cria novo nó para inserir o novo elemento
         No novo = new No(elemento);
@@ -71,6 +71,37 @@ public class Lista {
 
     }
 
+    // Método para inserir novo elemento na lista 
+    public void insert(Peca elemento) {
+
+        //cria novo nó para inserir o novo elemento
+        No novo = new No(elemento);
+        numerosElementos++;
+
+        //verifica se a lista esta vazia, e insere primeiro nó a lista
+        if (isEmpty()) {
+            inicio = novo;
+            inicio.setProximo(inicio);
+            inicio.setAnterior(inicio);
+            return;
+        }
+
+        //cria um nó auxiliar para não perder a referencia do inicio da lista
+        aux = inicio;
+
+        // Percorre a lista até o ultimo nó ou até encontrar um nó com elemento de menor valor
+        while (this.aux.getProximo() != inicio) {
+
+            aux = aux.getProximo();
+        }
+
+        novo.setAnterior(aux);
+        novo.setProximo(inicio);
+        inicio.setAnterior(novo);
+        aux.setProximo(novo);
+
+    }
+
     //metodo para remover um elemento
     public void remove(int id) {
 
@@ -79,15 +110,15 @@ public class Lista {
 
             // verifica se o elemento a ser removido é o primeiro
             if (inicio.getElemento().getId() == id) {
-				
-				if(inicio.getProximo()	 == inicio){
-					
-					inicio = null;
-					this.numerosElementos--;
-					return;
-					
-				}
-				
+
+                if (inicio.getProximo() == inicio) {
+
+                    inicio = null;
+                    this.numerosElementos--;
+                    return;
+
+                }
+
                 inicio.getAnterior().setProximo(inicio.getProximo());
                 inicio.getProximo().setAnterior(inicio.getAnterior());
                 inicio = inicio.getProximo();

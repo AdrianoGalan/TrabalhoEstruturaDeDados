@@ -15,19 +15,19 @@ public class TesteApp {
         Lista pecas = new Lista();
 
         pecas.insert(new Peca(0, "e", 2.0));
-//        pecas.printList();
+        pecas.printList();
 //        System.err.println("1");
         pecas.insert(new Peca(1, "d", 2.2));
-//        pecas.printList();
+        pecas.printList();
 //        System.err.println("2");
         pecas.insert(new Peca(2, "f", 3.9));
-//        pecas.printList();
+        pecas.printList();
 ////        System.err.println("3");
         pecas.insert(new Peca(3, "c", 3.0));
-//        pecas.printList();
+        pecas.printList();
 ////        System.err.println("4");
         pecas.insert(new Peca(4, "a", 5.79));
-//        pecas.printList();
+        pecas.printList();
 //////        System.err.println("5");
         pecas.insert(new Peca(5, "b", 6));
 //////        pecas.printList();
@@ -58,7 +58,7 @@ public class TesteApp {
         System.err.println("Remove elemento 4");
         pecas.remove(4);
         pecas.printList();
-		System.err.println("Remove elemento 1");
+	System.err.println("Remove elemento 1");
         pecas.remove(1);
         pecas.printList();
         System.err.println("Remove elemento 3");
