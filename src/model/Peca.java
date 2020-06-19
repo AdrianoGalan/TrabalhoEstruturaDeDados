@@ -1,21 +1,16 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+Criar uma estrutura de dados não-homogênea para 
+exemplificação dos dados gerados no cenário escolhido pelo grupo.
  */
 package model;
 
-/**
- *
- * @author drico
- */
 public class Peca {
     
     private int id;
     private double preco;
     private String marca;
     private String nome;
-    private String descricao;
+    private String modelo;
 
     public Peca() {
     }
@@ -66,13 +61,15 @@ public class Peca {
         this.nome = nome;
     }
 
-    public String getDescricao() {
-        return descricao;
+    public String getModelo() {
+        return modelo;
     }
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
+    public void setModelo(String modelo) {
+        this.modelo = modelo;
     }
+
+
     
     
 }
