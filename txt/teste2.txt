@@ -1,0 +1,1 @@
+Peca{id=0, preco=2.0, nome=e}

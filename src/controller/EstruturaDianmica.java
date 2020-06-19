@@ -180,4 +180,22 @@ public abstract class EstruturaDianmica {
         return numerosElementos;
     }
 
+    public No getInicio() {
+        return inicio;
+    }
+
+    public void setInicio(No inicio) {
+        this.inicio = inicio;
+    }
+
+    public No getAux() {
+        return aux;
+    }
+
+    public void setAux(No aux) {
+        this.aux = aux;
+    }
+    
+    
+
 }
