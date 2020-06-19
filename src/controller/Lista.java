@@ -117,7 +117,7 @@ public class Lista extends EstruturaDianmica {
     }
 
     //metodo para remover um elemento
-    public void removeById(int id) {
+    public void remove(int id) {
 
         //verifica se a lista esta vazia
         if (!isEmpty()) {
@@ -165,5 +165,7 @@ public class Lista extends EstruturaDianmica {
         }
 
     }
+
+   
 
 }

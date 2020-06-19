@@ -1,12 +1,9 @@
-
 package controller;
 
 import model.Peca;
 
-
 public abstract class EstruturaDianmica {
-    
-    
+
     protected No inicio;
     protected No aux;
     protected int numerosElementos;
@@ -19,12 +16,122 @@ public abstract class EstruturaDianmica {
 
     // Método para inserir novo elemento na lista 
     protected abstract void insert(Peca elemento);
-    
-    
+
     //metodo para remover um elemento
     protected abstract void remove();
+
+    public Peca search(int id) {
+
+        if (!isEmpty()) {
+
+            if (inicio.getElemento().getId() == id) {
+                return inicio.getElemento();
+            }
+
+            aux = inicio;
+
+            while (aux.getProximo() != inicio && aux.getElemento().getId() != id) {
+
+                aux = aux.getProximo();
+
+            }
+            if (aux.getElemento().getId() == id) {
+                return aux.getElemento();
+            }
+
+            return null;
+
+        } else {
+
+            return null;
+        }
+
+    }
     
-           
+    public Peca search(String nome) {
+
+        if (!isEmpty()) {
+
+            if  (inicio.getElemento().getNome().equalsIgnoreCase(nome)) {
+                return inicio.getElemento();
+            }
+
+            aux = inicio;
+
+            while (aux.getProximo() != inicio && (!aux.getElemento().getNome().equalsIgnoreCase(nome))) {
+
+                aux = aux.getProximo();
+
+            }
+            if (aux.getElemento().getNome().equalsIgnoreCase(nome)) {
+                return aux.getElemento();
+            }
+
+            return null;
+
+        } else {
+
+            return null;
+        }
+
+    }
+    
+    public Peca searchBrand(String marca) {
+
+        if (!isEmpty()) {
+
+            if  (inicio.getElemento().getMarca().equalsIgnoreCase(marca)) {
+                return inicio.getElemento();
+            }
+
+            aux = inicio;
+
+            while (aux.getProximo() != inicio && (!aux.getElemento().getMarca().equalsIgnoreCase(marca))) {
+
+                aux = aux.getProximo();
+
+            }
+            if (aux.getElemento().getModelo().equalsIgnoreCase(marca)) {
+                return aux.getElemento();
+            }
+
+            return null;
+
+        } else {
+
+            return null;
+        }
+
+    }
+    
+    public Peca searchModel(String modelo) {
+
+        if (!isEmpty()) {
+
+            if  (inicio.getElemento().getModelo().equalsIgnoreCase(modelo)) {
+                return inicio.getElemento();
+            }
+
+            aux = inicio;
+
+            while (aux.getProximo() != inicio && (!aux.getElemento().getModelo().equalsIgnoreCase(modelo))) {
+
+                aux = aux.getProximo();
+
+            }
+            if (aux.getElemento().getModelo().equalsIgnoreCase(modelo)) {
+                return aux.getElemento();
+            }
+
+            return null;
+
+        } else {
+
+            return null;
+        }
+
+    }
+
     public void printList() {
 
         if (!isEmpty()) {
@@ -54,5 +161,5 @@ public abstract class EstruturaDianmica {
     protected int getNumerosElementos() {
         return numerosElementos;
     }
-    
+
 }
