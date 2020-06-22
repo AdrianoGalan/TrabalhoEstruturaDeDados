@@ -156,12 +156,12 @@ public abstract class EstruturaDianmica {
             aux = inicio;
             while (aux.getProximo() != inicio) {
                 System.out.println("[Id-" + aux.getElemento().getId() + " nome- "
-                        + aux.getElemento().getNome() + "] ");
+                        + aux.getElemento().getNome() + " preço- " + aux.getElemento().getPreco() + "] ");
 
                 aux = aux.getProximo();
             }
             System.out.println("[Id-" + aux.getElemento().getId() + " nome- "
-                    + aux.getElemento().getNome() + "] ");
+                    + aux.getElemento().getNome() + " preço- " + aux.getElemento().getPreco() + "] ");
 
             System.out.println("Total de Elementos = " + numerosElementos);
 
@@ -176,7 +176,7 @@ public abstract class EstruturaDianmica {
         return this.inicio == null;
     }
 
-    protected int getNumerosElementos() {
+    public int getNumerosElementos() {
         return numerosElementos;
     }
 

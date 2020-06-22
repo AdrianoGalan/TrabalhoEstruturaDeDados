@@ -84,9 +84,18 @@ public class Lista extends EstruturaDianmica {
         aux = inicio;
 
         // Percorre a lista até o ultimo nó ou até encontrar um nó com elemento de menor valor
-        while (this.aux.getProximo() != inicio) {
+        while (this.aux.getProximo() != inicio && (aux.getElemento().getId() != elemento.getId())) {
 
             aux = aux.getProximo();
+        }
+
+        if (aux.getElemento().getId() == elemento.getId()) {
+            aux.getElemento().setMarca(elemento.getMarca());
+            aux.getElemento().setModelo(elemento.getModelo());
+            aux.getElemento().setPreco(elemento.getPreco());
+
+            return;
+
         }
 
         novo.setAnterior(aux);
@@ -95,8 +104,6 @@ public class Lista extends EstruturaDianmica {
         aux.setProximo(novo);
 
     }
-
-    
 
     //metodo para remover um elemento
     public void remove(int id) {
@@ -147,7 +154,5 @@ public class Lista extends EstruturaDianmica {
         }
 
     }
-
-   
 
 }
