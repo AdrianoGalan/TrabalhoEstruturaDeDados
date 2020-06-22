@@ -15,6 +15,12 @@ public class Peca {
     public Peca() {
     }
 
+    public Peca(int id) {
+        this.id = id;
+    }
+    
+    
+
     public Peca(int id, String nome, double preco) {
         this.id = id;
         this.nome = nome;
