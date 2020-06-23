@@ -236,4 +236,26 @@ public class ReadWrite {
         }
 
     }
+    
+    	public void readDir()  {
+            
+            String path = "txt/";
+            
+		File dir = new File(path);
+		if (dir.exists() && dir.isDirectory()) {
+
+			File[] files = dir.listFiles();
+			for (File f : files) {
+				if (f.isFile()) {
+					System.out.println("      \t" + f.getName());
+				} else {
+					System.out.println("<DIR>\t" + f.getName());
+				}
+			}
+
+		} else {
+			//throw new IOException("Diretório inválido");
+		}
+
+	}
 }

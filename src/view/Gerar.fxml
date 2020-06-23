@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="580.0" prefWidth="580.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="viewController.GerarController">
+   <children>
+      <SplitPane dividerPositions="0.23183391003460208" layoutX="210.0" layoutY="190.0" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+               <children>
+                  <HBox alignment="CENTER_RIGHT" layoutX="180.0" layoutY="-9.0" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <VBox alignment="CENTER" prefHeight="65.0" prefWidth="117.0">
+                           <children>
+                              <Label text="Digite o numero de" />
+                              <Label text="dados a ser gerado">
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <TextField prefHeight="25.0" prefWidth="102.0">
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" />
+                                 </VBox.margin>
+                              </TextField>
+                              <Button mnemonicParsing="false" prefHeight="29.0" prefWidth="103.0" text="Gerar" />
+                           </children>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </VBox>
+                     </children>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </HBox>
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="432.0" prefWidth="578.0">
+               <children>
+                  <TableView fx:id="tbArquivos" layoutX="6.0" layoutY="14.0" prefHeight="259.0" prefWidth="566.0">
+                    <columns>
+                      <TableColumn prefWidth="401.0" text="Nome" />
+                      <TableColumn minWidth="0.0" prefWidth="164.0" text="Tamanho" />
+                    </columns>
+                  </TableView>
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </children>
+</AnchorPane>
