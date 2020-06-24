@@ -5,7 +5,7 @@ exemplificação dos dados gerados no cenário escolhido pelo grupo.
 package model;
 
 public class Peca {
-    
+
     private int id;
     private double preco;
     private String marca;
@@ -18,8 +18,6 @@ public class Peca {
     public Peca(int id) {
         this.id = id;
     }
-    
-    
 
     public Peca(int id, String nome, double preco) {
         this.id = id;
@@ -34,16 +32,12 @@ public class Peca {
         this.nome = nome;
         this.modelo = modelo;
     }
-    
 
     @Override
     public String toString() {
-        return "Peca{" + "id=" + id + ", preco=" + preco + ", nome=" + nome + '}';
+        return "Id: " + id + ", Nome: " + nome + ", Marca: " + marca + ", Modelo: " + modelo + ", Preco: " + preco;
     }
-    
-        
-    
-    
+
     public int getId() {
         return id;
     }
@@ -84,7 +78,4 @@ public class Peca {
         this.modelo = modelo;
     }
 
-
-    
-    
 }

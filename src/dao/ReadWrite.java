@@ -2,6 +2,7 @@ package dao;
 
 import controller.EstruturaDianmica;
 import controller.Hash;
+import controller.Lista;
 import controller.No;
 import java.awt.Desktop;
 import java.io.BufferedReader;
@@ -271,31 +272,31 @@ public class ReadWrite {
         File file = new File(path, name);
         if (file.exists()) {
 
-           return file.delete();
+            return file.delete();
 
         } else {
-            
+
             return false;
             //throw new IOException("Diretório inválido");
         }
 
     }
-    
-    public void openFile(String name) throws IOException {
-    
-                String path = "txt/";
-    
-		File arq = new File(path, name);
-		
-		if(arq.exists() && arq.isFile()) {
-			
-			Desktop desktop = Desktop.getDesktop();
-			desktop.open(arq);
-			
-		}else {
-			throw new IOException("Diretório inválido");
-		}
 
-	}
+    public void openFile(String name) throws IOException {
+
+        String path = "txt/";
+
+        File arq = new File(path, name);
+
+        if (arq.exists() && arq.isFile()) {
+
+            Desktop desktop = Desktop.getDesktop();
+            desktop.open(arq);
+
+        } else {
+            throw new IOException("Diretório inválido");
+        }
+
+    }
 
 }

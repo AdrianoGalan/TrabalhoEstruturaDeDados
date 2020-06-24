@@ -7,6 +7,7 @@ public abstract class EstruturaDianmica {
     protected No inicio;
     protected No aux;
     protected int numerosElementos;
+    private long tempoBusca;
 
     public EstruturaDianmica() {
 
@@ -37,7 +38,6 @@ public abstract class EstruturaDianmica {
 
     }
 
-
     public Peca search(int id) {
 
         if (!isEmpty()) {
@@ -65,12 +65,18 @@ public abstract class EstruturaDianmica {
         }
 
     }
-    
+
     public Peca search(String nome) {
+
+        long fimTemp, inicioTemp = System.currentTimeMillis();
 
         if (!isEmpty()) {
 
-            if  (inicio.getElemento().getNome().equalsIgnoreCase(nome)) {
+            if (inicio.getElemento().getNome().equalsIgnoreCase(nome)) {
+
+                fimTemp = System.currentTimeMillis();
+                tempoBusca = inicioTemp - fimTemp;
+
                 return inicio.getElemento();
             }
 
@@ -82,23 +88,31 @@ public abstract class EstruturaDianmica {
 
             }
             if (aux.getElemento().getNome().equalsIgnoreCase(nome)) {
+
+                fimTemp = System.currentTimeMillis();
+                tempoBusca = inicioTemp - fimTemp;
+
                 return aux.getElemento();
             }
 
+            fimTemp = System.currentTimeMillis();
+            tempoBusca = inicioTemp - fimTemp;
             return null;
 
         } else {
 
+            fimTemp = System.currentTimeMillis();
+            tempoBusca = inicioTemp - fimTemp;
             return null;
         }
 
     }
-    
+
     public Peca searchBrand(String marca) {
 
         if (!isEmpty()) {
 
-            if  (inicio.getElemento().getMarca().equalsIgnoreCase(marca)) {
+            if (inicio.getElemento().getMarca().equalsIgnoreCase(marca)) {
                 return inicio.getElemento();
             }
 
@@ -121,12 +135,12 @@ public abstract class EstruturaDianmica {
         }
 
     }
-    
+
     public Peca searchModel(String modelo) {
 
         if (!isEmpty()) {
 
-            if  (inicio.getElemento().getModelo().equalsIgnoreCase(modelo)) {
+            if (inicio.getElemento().getModelo().equalsIgnoreCase(modelo)) {
                 return inicio.getElemento();
             }
 
@@ -195,7 +209,9 @@ public abstract class EstruturaDianmica {
     public void setAux(No aux) {
         this.aux = aux;
     }
-    
-    
+
+    public long getTempoBusca() {
+        return tempoBusca;
+    }
 
 }

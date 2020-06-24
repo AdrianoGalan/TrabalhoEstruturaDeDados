@@ -19,12 +19,14 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javax.swing.JOptionPane;
+import model.Peca;
 import modelTable.TableFie;
 import util.GerarDadosEntrada;
 
@@ -43,12 +45,12 @@ public class GerarController implements Initializable {
     private TextField lbNomeArquivo;
     @FXML
     private TableColumn<TableFie, String> tbNome;
-    
 
     private PrincipalController principal;
     private ArrayList arquivos;
     private ReadWrite rw = new ReadWrite();
-
+    @FXML
+    private Button btnCarrega;
 
     /**
      * Initializes the controller class.
@@ -95,12 +97,15 @@ public class GerarController implements Initializable {
         abrirArquivo();
     }
 
-     @FXML
+    @FXML
     private void btnCarregaArquivo(ActionEvent event) {
-        
+
+        System.out.println("clique");
+
         carrega();
+
     }
-    
+
     private void iniciaTablelaArquivos() {
 
         tbNome.setCellValueFactory(new PropertyValueFactory("nome"));
@@ -161,23 +166,21 @@ public class GerarController implements Initializable {
         }
     }
 
-    private void carrega() {
-
+    private void carrega() {       
+    
         TableFie arqSelecionado = tbArquivos.getSelectionModel().getSelectedItem();
         String nome;
 
         if (arqSelecionado != null) {
             nome = arqSelecionado.getNome();
             
-                 
-
+           
             ArquivoAtual.setHashAtual(rw.readHash(nome));
             ArquivoAtual.setPecas(rw.readVetor(nome));
             ArquivoAtual.setNome(nome);
-            
-          
-            JOptionPane.showMessageDialog(null, "Arquivo carregado");
 
+            JOptionPane.showMessageDialog(null, "Arquivo carregado");
+            
         } else {
             JOptionPane.showMessageDialog(null, "Seleciona um arquivo");
         }
@@ -206,7 +209,5 @@ public class GerarController implements Initializable {
         }
 
     }
-
-   
 
 }

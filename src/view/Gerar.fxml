@@ -40,7 +40,7 @@
                         <Button layoutX="87.0" layoutY="436.0" mnemonicParsing="false" onAction="#btnAtualizarLista" prefHeight="29.0" prefWidth="103.0" text="Atualizar lista" />
                         <Button layoutX="200.0" layoutY="436.0" mnemonicParsing="false" onAction="#btnDeletarArquivo" prefHeight="29.0" prefWidth="103.0" text="Deletar arquivo" />
                         <Button layoutX="313.0" layoutY="436.0" mnemonicParsing="false" onAction="#btnAbrirArquivo" prefHeight="29.0" prefWidth="103.0" text="Abrir arquivo" />
-                        <Button layoutX="430.0" layoutY="436.0" mnemonicParsing="false" onAction="#btnCarregaArquivo" prefHeight="29.0" prefWidth="103.0" text="Carregar dados" />
+                        <Button fx:id="btnCarrega" layoutX="430.0" layoutY="436.0" mnemonicParsing="false" onAction="#btnCarregaArquivo" prefHeight="29.0" prefWidth="103.0" text="Carregar dados" />
                      </children>
                   </Pane>
                </children>

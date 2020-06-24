@@ -11,7 +11,11 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
+import javax.swing.JOptionPane;
+import model.Peca;
 
 /**
  * FXML Controller class
@@ -22,22 +26,122 @@ public class BuscaController implements Initializable {
 
     @FXML
     private TextField tfBusca;
+    @FXML
+    private TextField tfReturnHash;
+    @FXML
+    private TextField tfTempOrdHash;
+    @FXML
+    private TextField tfTempBuscaHash;
+    @FXML
+    private ProgressBar pbHash;
+    @FXML
+    private ProgressBar pbDinamica;
+    @FXML
+    private TextField tfTempBuscaLinear;
+    @FXML
+    private TextField tfTempOrdLinear;
+    @FXML
+    private TextField tfReturnLinear;
+    @FXML
+    private TextField tfReturnBinaria;
+    @FXML
+    private TextField tfTempOrdBinaria;
+    @FXML
+    private TextField tfTempBuscaBinaria;
+    @FXML
+    private ProgressBar pbBinaria;
+    private double i = 0;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
+
+    }
 
     @FXML
     private void btnBusca(ActionEvent event) {
-        
-        
-        System.out.println(ArquivoAtual.getHashAtual().search(tfBusca.getText()));
-//        System.out.println(ArquivoAtual.getPecas()[3].getNome());
-        
+
+        pbHash.setProgress(-1);
+        pbDinamica.setProgress(-1);
+        pbBinaria.setProgress(-1);
+
+        int id;
+
+        String nome = tfBusca.getText();
+
+        if (validaTfBusca()) {
+
+            try {
+                id = Integer.parseInt(nome);
+
+                buscaHash(id);
+
+            } catch (Exception e) {
+
+                buscaHash(nome);
+                buscaLinear(nome);
+
+            }
+
+        }
     }
-    
+
+    private void buscaHash(String nome) {
+
+        Peca peca = ArquivoAtual.getHashAtual().search(nome);
+        tfTempOrdHash.setText("0");
+        tfTempBuscaHash.setText(String.valueOf(ArquivoAtual.getHashAtual().getTempoBusca()));
+        pbHash.setProgress(1);
+
+        if (peca != null) {
+
+            tfReturnHash.setText(peca.toString());
+
+        } else {
+            tfReturnHash.setText("valor não encontrado");
+        }
+    }
+
+    private void buscaHash(int id) {
+
+    }
+
+    private void buscaLinear(String nome) {
+
+        Peca peca = null;
+
+        tfTempOrdLinear.setText("0");
+//        tfTempBuscaLinear.setText(String.valueOf(ArquivoAtual.getListaPeca().getTempoBusca()));
+        pbDinamica.setProgress(1);
+
+        if (peca != null) {
+
+            tfReturnLinear.setText(peca.toString());
+
+        } else {
+            tfReturnLinear.setText("valor não encontrado");
+        }
+
+    }
+
+    private boolean validaTfBusca() {
+
+        if (ArquivoAtual.getHashAtual() != null) {
+            if (!tfBusca.getText().equalsIgnoreCase("")) {
+
+                return true;
+
+            } else {
+
+                JOptionPane.showMessageDialog(null, "Digite um nome ou id");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Carregar um arquivo");
+        }
+
+        return false;
+    }
+
 }
