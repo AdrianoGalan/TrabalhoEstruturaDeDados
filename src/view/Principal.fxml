@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
@@ -7,26 +8,44 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="viewController.PrincipalController">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewController.PrincipalController">
    <children>
       <SplitPane dividerPositions="0.24433249370277077" layoutX="14.0" layoutY="14.0" prefHeight="160.0" prefWidth="200.0" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
         <items>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="556.0" prefWidth="191.0">
                <children>
-                  <VBox alignment="CENTER" layoutX="46.0" layoutY="160.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <VBox alignment="TOP_CENTER" layoutX="46.0" layoutY="160.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
+                        <VBox alignment="TOP_CENTER" prefHeight="146.0" prefWidth="191.0">
+                           <children>
+                              <Label text="Arquivo atual:">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="lbArquivoAtual" text="Seleciona um arquivo">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
                         <Button fx:id="btnMenuGerar" mnemonicParsing="false" onAction="#menuGerar" prefHeight="54.0" prefWidth="191.0" text="Gerar TXT dados">
                            <VBox.margin>
                               <Insets bottom="10.0" left="5.0" right="5.0" />
                            </VBox.margin>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="54.0" prefWidth="191.0" text="Buscar / Inserir/ Deletar">
+                        <Button mnemonicParsing="false" onAction="#btnBID" prefHeight="54.0" prefWidth="191.0" text="Buscar / Inserir/ Deletar">
                            <VBox.margin>
                               <Insets bottom="10.0" left="5.0" right="5.0" />
                            </VBox.margin>
                         </Button>
                         <Button mnemonicParsing="false" prefHeight="54.0" prefWidth="191.0" text="Ordenar">
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="5.0" right="5.0" />
+                           </VBox.margin>
+                        </Button>
+                        <Button mnemonicParsing="false" prefHeight="54.0" prefWidth="191.0" text="Relatorio">
                            <VBox.margin>
                               <Insets left="5.0" right="5.0" />
                            </VBox.margin>

@@ -3,6 +3,7 @@ package dao;
 import controller.EstruturaDianmica;
 import controller.Hash;
 import controller.No;
+import java.awt.Desktop;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -10,6 +11,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Peca;
@@ -163,7 +165,7 @@ public class ReadWrite {
 
         try {
             //le arquivo
-            BufferedReader read = new BufferedReader(new FileReader("txt/" + nomeArquivo + ".txt"));
+            BufferedReader read = new BufferedReader(new FileReader("txt/" + nomeArquivo));
             String[] ler;
 
             //le primeira linha arquivo
@@ -174,6 +176,7 @@ public class ReadWrite {
                 ler = read.readLine().split(";");
 
             } catch (Exception e) {
+                System.out.println("deu merda no nome");
                 ler = null;
             }
 
@@ -204,7 +207,7 @@ public class ReadWrite {
 
         try {
             //le arquivo
-            BufferedReader read = new BufferedReader(new FileReader("txt/" + nomeArquivo + ".txt"));
+            BufferedReader read = new BufferedReader(new FileReader("txt/" + nomeArquivo));
             String[] ler;
 
             //le primeira linha arquivo
@@ -236,26 +239,63 @@ public class ReadWrite {
         }
 
     }
+
+    public ArrayList readDir() {
+
+        ArrayList<String> arquivos = new ArrayList();
+
+        String path = "txt/";
+
+        File file = new File(path);
+        if (file.exists() && file.isDirectory()) {
+
+            File[] files = file.listFiles();
+            for (File f : files) {
+                if (f.isFile()) {
+                    arquivos.add(f.getName());
+                }
+            }
+
+        } else {
+            //throw new IOException("Diretório inválido");
+        }
+        return arquivos;
+    }
+
+    public boolean deleteFine(String name) {
+
+        ArrayList<String> arquivos = new ArrayList();
+
+        String path = "txt/";
+
+        File file = new File(path, name);
+        if (file.exists()) {
+
+           return file.delete();
+
+        } else {
+            
+            return false;
+            //throw new IOException("Diretório inválido");
+        }
+
+    }
     
-    	public void readDir()  {
-            
-            String path = "txt/";
-            
-		File dir = new File(path);
-		if (dir.exists() && dir.isDirectory()) {
-
-			File[] files = dir.listFiles();
-			for (File f : files) {
-				if (f.isFile()) {
-					System.out.println("      \t" + f.getName());
-				} else {
-					System.out.println("<DIR>\t" + f.getName());
-				}
-			}
-
-		} else {
-			//throw new IOException("Diretório inválido");
+    public void openFile(String name) throws IOException {
+    
+                String path = "txt/";
+    
+		File arq = new File(path, name);
+		
+		if(arq.exists() && arq.isFile()) {
+			
+			Desktop desktop = Desktop.getDesktop();
+			desktop.open(arq);
+			
+		}else {
+			throw new IOException("Diretório inválido");
 		}
 
 	}
+
 }

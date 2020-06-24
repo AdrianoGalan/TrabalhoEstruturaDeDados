@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="580.0" prefWidth="580.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="viewController.BuscaController">
+   <children>
+      <SplitPane dividerPositions="0.10553633217993079" layoutX="210.0" layoutY="137.0" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="49.0" prefWidth="578.0">
+               <children>
+                  <Label layoutX="47.0" layoutY="13.0" text="Busca Elemento">
+                     <font>
+                        <Font size="22.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="518.0" prefWidth="578.0">
+               <children>
+                  <TextField fx:id="tfBusca" layoutX="34.0" layoutY="30.0" promptText="nome ou id" />
+                  <Button layoutX="225.0" layoutY="30.0" mnemonicParsing="false" onAction="#btnBusca" text="buscar" />
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </children>
+</AnchorPane>
