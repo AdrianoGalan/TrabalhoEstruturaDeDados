@@ -7,6 +7,7 @@ package viewController;
 
 import controller.ArquivoAtual;
 import controller.Ordenar;
+import dao.ReadWrite;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -77,8 +78,9 @@ public class OrdenarController implements Initializable {
 
     @FXML
     private void btnOrdenarBubble(ActionEvent event) {
-        
+
         if (pecas != null) {
+            tfTempBublle.setText("");
             if (radioNome.isSelected()) {
                 pecas = ordena.bubbleSortNome(pecas);
             } else {
@@ -87,19 +89,31 @@ public class OrdenarController implements Initializable {
             iniciaTablela(pecas);
             tfTempBublle.setText(String.valueOf(ordena.getTempoOrdenar()));
         }
-        
+
     }
 
     @FXML
     private void btnOrdenarSelection(ActionEvent event) {
-        
-        int i = 0;
+
+        if (pecas != null) {
+            tfTempSelection.setText("");
+            if (radioNome.isSelected()) {
+                pecas = ordena.selectionSortNome(pecas);
+            } else {
+                pecas = ordena.selectionSortId(pecas);
+            }
+            iniciaTablela(pecas);
+            tfTempSelection.setText(String.valueOf(ordena.getTempoOrdenar()));
+
+        }
+
     }
 
     @FXML
     private void btnOrdenarInsertion(ActionEvent event) {
 
         if (pecas != null) {
+            tfTempInsertion.setText("");
             if (radioNome.isSelected()) {
                 pecas = ordena.insertionSortName(pecas);
             } else {
@@ -116,6 +130,18 @@ public class OrdenarController implements Initializable {
 
     @FXML
     private void btnSalvar(ActionEvent event) {
+    }
+
+    @FXML
+    private void btnRestTabela(ActionEvent event) {
+
+        ReadWrite rw = new ReadWrite();
+
+        if (pecas != null) {
+            pecas = rw.readVetor(ArquivoAtual.getNome());
+            iniciaTablela(pecas);
+        }
+
     }
 
     private void iniciaTablela(Peca[] pecasTable) {

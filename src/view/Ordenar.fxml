@@ -24,6 +24,7 @@
                      </toggleGroup>
                   </RadioButton>
                   <RadioButton fx:id="radioId" layoutX="363.0" layoutY="21.0" mnemonicParsing="false" text="Id" toggleGroup="$radio" />
+                  <Button layoutX="469.0" layoutY="17.0" mnemonicParsing="false" onAction="#btnRestTabela" text="Rest Tabela" />
                </children>
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="518.0" prefWidth="578.0">
