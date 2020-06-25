@@ -6,7 +6,6 @@
 package viewController;
 
 import controller.ArquivoAtual;
-import controller.Lista;
 import dao.ReadWrite;
 import java.io.IOException;
 import java.net.URL;
@@ -21,6 +20,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -51,6 +51,8 @@ public class GerarController implements Initializable {
     private ReadWrite rw = new ReadWrite();
     @FXML
     private Button btnCarrega;
+    @FXML
+    private ProgressBar pBar;
 
     /**
      * Initializes the controller class.
@@ -59,11 +61,14 @@ public class GerarController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
 
         iniciaTablelaArquivos();
+        
+         
     }
 
     @FXML
     private void btnGerar(ActionEvent event) {
-
+        
+        pBar.setProgress(-1);
         gerarArquivo();
     }
 
@@ -100,10 +105,13 @@ public class GerarController implements Initializable {
     @FXML
     private void btnCarregaArquivo(ActionEvent event) {
 
-        System.out.println("clique");
-
+        pBar.setProgress(-1);
+        
+        System.out.println(pBar.getProgress());
+        
+        if(pBar.getProgress() == -1){
         carrega();
-
+        }
     }
 
     private void iniciaTablelaArquivos() {
@@ -150,6 +158,7 @@ public class GerarController implements Initializable {
 
                     rw.write(gerador.gerarDados(nElementos), lbNomeArquivo.getText());
                     iniciaTablelaArquivos();
+                    pBar.setProgress(1);
                     lbNElementos.setText("");
                     lbNomeArquivo.setText("");
 
@@ -177,6 +186,7 @@ public class GerarController implements Initializable {
            
             ArquivoAtual.setHashAtual(rw.readHash(nome));
             ArquivoAtual.setPecas(rw.readVetor(nome));
+            pBar.setProgress(1);
             ArquivoAtual.setNome(nome);
 
             JOptionPane.showMessageDialog(null, "Arquivo carregado");

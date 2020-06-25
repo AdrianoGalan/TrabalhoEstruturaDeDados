@@ -63,6 +63,12 @@ public class PrincipalController implements Initializable {
 
         carregaTela("/view/Busca.fxml");
     }
+    
+    @FXML
+    private void btnOrdenar(ActionEvent event) {
+        
+        carregaTela("/view/Ordenar.fxml");
+    }
 
     public void carregaTela(String nomeTela) {
 
@@ -94,5 +100,7 @@ public class PrincipalController implements Initializable {
     private void atualizaArquivo() {
         lbArquivoAtual.setText(ArquivoAtual.getNome());
     }
+
+    
 
 }

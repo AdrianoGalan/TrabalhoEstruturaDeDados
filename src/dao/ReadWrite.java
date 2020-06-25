@@ -218,7 +218,7 @@ public class ReadWrite {
                 pecas = new Peca[Integer.parseInt(ler[0])];
                 ler = read.readLine().split(";");
 
-                for (int i = 1; i < pecas.length; i++) {
+                for (int i = 0; i < pecas.length; i++) {
                     pecas[i] = new Peca();
                     pecas[i].setId(Integer.parseInt(ler[0]));
                     pecas[i].setNome(ler[1]);

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="580.0" prefWidth="580.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewController.OrdenarController">
+   <children>
+      <SplitPane dividerPositions="0.10553633217993079" layoutX="210.0" layoutY="137.0" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="49.0" prefWidth="578.0">
+               <children>
+                  <Label layoutX="47.0" layoutY="13.0" text="Ordenar Elementos">
+                     <font>
+                        <Font size="22.0" />
+                     </font>
+                  </Label>
+                  <RadioButton fx:id="radioNome" layoutX="268.0" layoutY="21.0" mnemonicParsing="false" selected="true" text="Nome">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="radio" />
+                     </toggleGroup>
+                  </RadioButton>
+                  <RadioButton fx:id="radioId" layoutX="363.0" layoutY="21.0" mnemonicParsing="false" text="Id" toggleGroup="$radio" />
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="518.0" prefWidth="578.0">
+               <children>
+                  <Button layoutX="37.0" layoutY="108.0" mnemonicParsing="false" onAction="#btnOrdenarBubble" text="Ordenar" />
+                  <Label layoutX="25.0" layoutY="14.0" text="Bubble Sort">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="29.0" layoutY="41.0" text="tempo em ms" />
+                  <TextField fx:id="tfTempBublle" editable="false" layoutX="12.0" layoutY="64.0" prefHeight="25.0" prefWidth="111.0" />
+                  <Separator layoutX="10.0" layoutY="154.0" prefHeight="0.0" prefWidth="562.0" />
+                  <TextField fx:id="tfTempSelection" editable="false" layoutX="159.0" layoutY="63.0" prefHeight="25.0" prefWidth="111.0" />
+                  <Label layoutX="176.0" layoutY="40.0" text="tempo em ms" />
+                  <Label layoutX="163.0" layoutY="13.0" text="Selection Sort ">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Button layoutX="184.0" layoutY="107.0" mnemonicParsing="false" onAction="#btnOrdenarSelection" text="Ordenar" />
+                  <TextField fx:id="tfTempInsertion" editable="false" layoutX="288.0" layoutY="63.0" prefHeight="25.0" prefWidth="111.0" />
+                  <Label layoutX="305.0" layoutY="40.0" text="tempo em ms" />
+                  <Label layoutX="294.0" layoutY="13.0" text="Insertion Sort">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Button layoutX="313.0" layoutY="107.0" mnemonicParsing="false" onAction="#btnOrdenarInsertion" text="Ordenar" />
+                  <Button layoutX="445.0" layoutY="107.0" mnemonicParsing="false" onAction="#btnOrdenarQuick" text="Ordenar" />
+                  <Label layoutX="434.0" layoutY="13.0" text="Quick Sort ">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="437.0" layoutY="40.0" text="tempo em ms" />
+                  <TextField fx:id="tfTempQuick" editable="false" layoutX="420.0" layoutY="63.0" prefHeight="25.0" prefWidth="111.0" />
+                  <TableView fx:id="tbPeca" layoutX="14.0" layoutY="166.0" prefHeight="288.0" prefWidth="552.0">
+                    <columns>
+                      <TableColumn fx:id="tbPecaId" prefWidth="84.0" text="id" />
+                      <TableColumn fx:id="tbPecaNome" prefWidth="135.0" text="nome" />
+                        <TableColumn fx:id="tbPecaMarca" prefWidth="105.0" text="marca" />
+                        <TableColumn fx:id="tbPecaModelo" prefWidth="116.0" text="modelo" />
+                        <TableColumn fx:id="tbPecaPreco" prefWidth="111.0" text="Preço" />
+                    </columns>
+                  </TableView>
+                  <Button layoutX="427.0" layoutY="466.0" mnemonicParsing="false" onAction="#btnSalvar" prefHeight="25.0" prefWidth="98.0" text="Salvar txt" />
+                  <TextField layoutX="250.0" layoutY="466.0" promptText="Nome Arquivo" />
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </children>
+</AnchorPane>

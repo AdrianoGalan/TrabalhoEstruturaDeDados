@@ -45,7 +45,7 @@
                   <Label layoutX="410.0" layoutY="210.0" text="tempo de ordenaçao em ms" />
                   <Label layoutX="19.0" layoutY="242.0" text="Retorno" />
                   <Separator layoutX="10.0" layoutY="204.0" prefHeight="0.0" prefWidth="562.0" />
-                  <Label layoutX="19.0" layoutY="211.0" text="Linear lista dinamica">
+                  <Label layoutX="19.0" layoutY="211.0" text="Linear ">
                      <font>
                         <Font size="16.0" />
                      </font>
@@ -63,6 +63,7 @@
                   <TextField fx:id="tfTempOrdBinaria" editable="false" layoutX="411.0" layoutY="369.0" prefHeight="25.0" prefWidth="111.0" />
                   <TextField fx:id="tfTempBuscaBinaria" editable="false" layoutX="411.0" layoutY="426.0" prefHeight="25.0" prefWidth="111.0" />
                   <ProgressBar fx:id="pbBinaria" layoutX="93.0" layoutY="376.0" prefWidth="200.0" progress="0.0" />
+                  <CheckBox fx:id="chekAitivar" layoutX="72.0" layoutY="354.0" mnemonicParsing="false" text="ativar" />
                </children>
             </AnchorPane>
         </items>
