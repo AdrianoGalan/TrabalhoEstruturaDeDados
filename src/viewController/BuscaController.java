@@ -54,8 +54,7 @@ public class BuscaController implements Initializable {
     private ProgressBar pbBinaria;
     private double i = 0;
     private Busca busca;
-    @FXML
-    private CheckBox chekAitivar;
+   
 
     /**
      * Initializes the controller class.
@@ -84,15 +83,15 @@ public class BuscaController implements Initializable {
                 id = Integer.parseInt(nome);
 
                 buscaHash(id);
+                buscaLinear(id);
+                buscaBinaria(id);
 
             } catch (Exception e) {
 
                 buscaHash(nome);
                 buscaLinear(nome);
+                buscaBinaria(nome);
 
-                if (chekAitivar.isSelected()) {
-                    buscaBinaria(nome);
-                }
             }
 
         }
@@ -115,6 +114,19 @@ public class BuscaController implements Initializable {
     }
 
     private void buscaHash(int id) {
+        
+         Peca peca = ArquivoAtual.getHashAtual().search(id);
+        tfTempOrdHash.setText("0");
+        tfTempBuscaHash.setText(String.valueOf(ArquivoAtual.getHashAtual().getTempoBusca()));
+        pbHash.setProgress(1);
+
+        if (peca != null) {
+
+            tfReturnHash.setText(peca.toString());
+
+        } else {
+            tfReturnHash.setText("valor não encontrado");
+        }
 
     }
 
@@ -135,10 +147,47 @@ public class BuscaController implements Initializable {
         }
 
     }
+    
+    private void buscaLinear(int id) {
+
+        Peca peca = busca.buscaLinear(ArquivoAtual.getPecas(), id);
+
+        tfTempOrdLinear.setText("0");
+        tfTempBuscaLinear.setText(String.valueOf((busca.getTempoBusca())));
+        pbDinamica.setProgress(1);
+
+        if (peca != null) {
+
+            tfReturnLinear.setText(peca.toString());
+
+        } else {
+            tfReturnLinear.setText("valor não encontrado");
+        }
+
+    }
 
     private void buscaBinaria(String nome) {
 
         Peca peca = busca.buscaBinaria(ArquivoAtual.getPecas(), nome);
+
+        tfTempBuscaBinaria.setText(String.valueOf(busca.getTempoBusca()));
+        tfTempOrdBinaria.setText(String.valueOf(busca.getTempoOrdenar()));
+        pbBinaria.setProgress(1);
+
+        if (peca != null) {
+            tfReturnBinaria.setText(peca.toString());
+
+        } else {
+
+            tfReturnBinaria.setText("valor não encontrado");
+
+        }
+
+    }
+    
+    private void buscaBinaria(int id) {
+
+        Peca peca = busca.buscaBinaria(ArquivoAtual.getPecas(), id);
 
         tfTempBuscaBinaria.setText(String.valueOf(busca.getTempoBusca()));
         tfTempOrdBinaria.setText(String.valueOf(busca.getTempoOrdenar()));

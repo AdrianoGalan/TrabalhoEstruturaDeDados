@@ -16,7 +16,7 @@
                <children>
                   <VBox alignment="TOP_CENTER" layoutX="46.0" layoutY="160.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <VBox alignment="TOP_CENTER" prefHeight="146.0" prefWidth="191.0">
+                        <VBox alignment="TOP_CENTER" prefHeight="110.0" prefWidth="191.0">
                            <children>
                               <Label text="Arquivo atual:">
                                  <font>
@@ -40,14 +40,24 @@
                               <Insets bottom="10.0" left="5.0" right="5.0" />
                            </VBox.margin>
                         </Button>
+                        <Button mnemonicParsing="false" onAction="#btnInserirDeletar" prefHeight="54.0" prefWidth="191.0" text="Inserir / Deletar">
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="5.0" right="5.0" />
+                           </VBox.margin>
+                        </Button>
                         <Button mnemonicParsing="false" onAction="#btnOrdenar" prefHeight="54.0" prefWidth="191.0" text="Ordenar">
                            <VBox.margin>
                               <Insets bottom="10.0" left="5.0" right="5.0" />
                            </VBox.margin>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="54.0" prefWidth="191.0" text="Relatorio">
+                        <Button mnemonicParsing="false" onAction="#btnRelatorio" prefHeight="54.0" prefWidth="191.0" text="Relatorio">
                            <VBox.margin>
-                              <Insets left="5.0" right="5.0" />
+                              <Insets bottom="10.0" left="5.0" right="5.0" />
+                           </VBox.margin>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#btnVerCod" prefHeight="54.0" prefWidth="191.0" text="Codigo">
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="5.0" right="5.0" />
                            </VBox.margin>
                         </Button>
                      </children>

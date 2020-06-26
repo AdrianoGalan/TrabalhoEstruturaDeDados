@@ -140,7 +140,7 @@ public class ReadWrite {
 
         StringBuilder saida = new StringBuilder();
 
-        for (int i = 1; i < tamanho; i++) {
+        for (int i = 0; i < tamanho; i++) {
 
             saida.append("\n");
             saida.append(objetoGravar[i].getId());

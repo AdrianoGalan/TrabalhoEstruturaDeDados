@@ -135,15 +135,22 @@ public class OrdenarController implements Initializable {
     @FXML
     private void btnOrdenarQuick(ActionEvent event) {
 
+        long inicio;
+        
         if (pecas != null) {
             tfTempQuick.setText("");
             if (radioNome.isSelected()) {
+                pecas = rw.readVetor(ArquivoAtual.getNome());
+                inicio = System.currentTimeMillis();
                 pecas = ordena.quickSort(pecas, 0, (pecas.length - 1), 0);
             } else {
+                pecas = rw.readVetor(ArquivoAtual.getNome());
+                pecas = ordena.quickSort(pecas, 0, (pecas.length - 1), 0);
+                inicio = System.currentTimeMillis();
                 pecas = ordena.quickSort(pecas, 0, (pecas.length - 1), 1);
             }
             iniciaTablela(pecas);
-            tfTempQuick.setText(String.valueOf(ordena.getTempoOrdenar()));
+            tfTempQuick.setText(String.valueOf(System.currentTimeMillis() - inicio));
         }
 
     }

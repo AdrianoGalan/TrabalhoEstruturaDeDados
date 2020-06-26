@@ -197,8 +197,6 @@ public class Ordenar {
 
         if (inic > f) {
 
-            fim = System.currentTimeMillis();
-            tempoOrdenar = fim - inicio;
             return pecas;
         }
         if (tipo == 0) {
