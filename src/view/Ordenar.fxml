@@ -72,7 +72,7 @@
                     </columns>
                   </TableView>
                   <Button layoutX="427.0" layoutY="466.0" mnemonicParsing="false" onAction="#btnSalvar" prefHeight="25.0" prefWidth="98.0" text="Salvar txt" />
-                  <TextField layoutX="250.0" layoutY="466.0" promptText="Nome Arquivo" />
+                  <TextField fx:id="tfNomeArquivo" layoutX="250.0" layoutY="466.0" promptText="Nome Arquivo" />
                </children>
             </AnchorPane>
         </items>

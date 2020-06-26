@@ -22,6 +22,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javax.swing.JOptionPane;
 import model.Peca;
 import modelTable.TableFie;
 
@@ -61,12 +62,19 @@ public class OrdenarController implements Initializable {
 
     private Peca[] pecas;
     private Ordenar ordena;
+    private ReadWrite rw;
+
+    @FXML
+    private TextField tfNomeArquivo;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+
+        rw = new ReadWrite();
+
         pecas = ArquivoAtual.getPecas();
         ordena = new Ordenar();
 
@@ -126,16 +134,36 @@ public class OrdenarController implements Initializable {
 
     @FXML
     private void btnOrdenarQuick(ActionEvent event) {
+
+        if (pecas != null) {
+            tfTempQuick.setText("");
+            if (radioNome.isSelected()) {
+                pecas = ordena.quickSort(pecas, 0, (pecas.length - 1), 0);
+            } else {
+                pecas = ordena.quickSort(pecas, 0, (pecas.length - 1), 1);
+            }
+            iniciaTablela(pecas);
+            tfTempQuick.setText(String.valueOf(ordena.getTempoOrdenar()));
+        }
+
     }
 
     @FXML
     private void btnSalvar(ActionEvent event) {
+
+        if (!tfNomeArquivo.getText().equals("")) {
+
+            rw.write(pecas, tfNomeArquivo.getText());
+            tfNomeArquivo.setText("");
+            JOptionPane.showMessageDialog(null, "arquivo salvo");
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Digite o nome do arquivo");
+        }
     }
 
     @FXML
     private void btnRestTabela(ActionEvent event) {
-
-        ReadWrite rw = new ReadWrite();
 
         if (pecas != null) {
             pecas = rw.readVetor(ArquivoAtual.getNome());

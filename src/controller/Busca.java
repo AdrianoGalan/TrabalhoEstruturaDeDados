@@ -15,14 +15,18 @@ public class Busca {
 
     public Peca buscaBinaria(Peca[] pecas, String nome) {
 
-        pecas = ordenar.insertionSortName(pecas);
-        tempoOrdenar = ordenar.getTempoOrdenar();
-
-        inicio = System.currentTimeMillis();
-
         int menor = 0;
         int maior = pecas.length - 1;
         int meio;
+        boolean vetorOrdenado = false;
+
+        if(!vetorOrdenado){
+        pecas = ordenar.quickSort(pecas, menor, maior, 0);
+        vetorOrdenado = true;
+        }
+        tempoOrdenar = ordenar.getTempoOrdenar();
+
+        inicio = System.currentTimeMillis();
 
         while (menor <= maior) {
             meio = (menor + maior) / 2;
@@ -57,7 +61,7 @@ public class Busca {
 
         int tamanho = pecas.length;
 
-        for (int j = 1; j < tamanho; j++) {
+        for (int j = 0; j < tamanho; j++) {
 
             if (pecas[j].getNome().equals(nome)) {
 

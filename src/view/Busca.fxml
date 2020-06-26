@@ -58,12 +58,13 @@
                   <Separator layoutX="10.0" layoutY="343.0" prefHeight="0.0" prefWidth="562.0" />
                   <Label layoutX="19.0" layoutY="381.0" text="Retorno" />
                   <Label layoutX="410.0" layoutY="349.0" text="tempo de ordenaçao em ms" />
-                  <Label layoutX="411.0" layoutY="403.0" text="tempo de busca em ms" />
+                  <Label layoutX="411.0" layoutY="422.0" text="tempo de busca em ms" />
                   <TextField fx:id="tfReturnBinaria" editable="false" layoutX="4.0" layoutY="403.0" prefHeight="25.0" prefWidth="403.0" />
-                  <TextField fx:id="tfTempOrdBinaria" editable="false" layoutX="411.0" layoutY="369.0" prefHeight="25.0" prefWidth="111.0" />
-                  <TextField fx:id="tfTempBuscaBinaria" editable="false" layoutX="411.0" layoutY="426.0" prefHeight="25.0" prefWidth="111.0" />
+                  <TextField fx:id="tfTempOrdBinaria" editable="false" layoutX="411.0" layoutY="388.0" prefHeight="25.0" prefWidth="111.0" />
+                  <TextField fx:id="tfTempBuscaBinaria" editable="false" layoutX="411.0" layoutY="445.0" prefHeight="25.0" prefWidth="111.0" />
                   <ProgressBar fx:id="pbBinaria" layoutX="93.0" layoutY="376.0" prefWidth="200.0" progress="0.0" />
                   <CheckBox fx:id="chekAitivar" layoutX="72.0" layoutY="354.0" mnemonicParsing="false" text="ativar" />
+                  <Label layoutX="412.0" layoutY="365.0" text="(Quick Sort )" />
                </children>
             </AnchorPane>
         </items>
