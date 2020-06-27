@@ -6,7 +6,9 @@ import model.Peca;
 public class Busca {
 
     private Ordenar ordenar;
-    private long inicio, fim, tempoOrdenar, tempoBusca, inicOr, fimOr;
+    private long tempoOrdenar, tempoBuscaL, tempoBuscaB, inicOr, fimOr;
+
+   
     private ReadWrite rw;
 
     public Busca() {
@@ -29,16 +31,14 @@ public class Busca {
 
         tempoOrdenar = fimOr - inicOr;
 
-        inicio = System.currentTimeMillis();
+        long inicio = System.currentTimeMillis();
 
         while (menor <= maior) {
             meio = (menor + maior) / 2;
 
             if (pecas[meio].getNome().equals(nome)) {
 
-                fim = System.currentTimeMillis();
-
-                tempoBusca = inicio - fim;
+                tempoBuscaB = System.currentTimeMillis() - inicio;
 
                 return pecas[meio];
             }
@@ -50,9 +50,7 @@ public class Busca {
             }
         }
 
-        fim = System.currentTimeMillis();
-
-        tempoBusca = inicio - fim;
+        tempoBuscaB = System.currentTimeMillis() - inicio;
 
         return null;
 
@@ -72,16 +70,14 @@ public class Busca {
 
         tempoOrdenar = fimOr - inicOr;
 
-        inicio = System.currentTimeMillis();
+        long inicio = System.currentTimeMillis();
 
         while (menor <= maior) {
             meio = (menor + maior) / 2;
 
             if (pecas[meio].getId() == id) {
 
-                fim = System.currentTimeMillis();
-
-                tempoBusca = inicio - fim;
+                tempoBuscaB = System.currentTimeMillis() - inicio;
 
                 return pecas[meio];
             }
@@ -93,9 +89,7 @@ public class Busca {
             }
         }
 
-        fim = System.currentTimeMillis();
-
-        tempoBusca = inicio - fim;
+        tempoBuscaB = System.currentTimeMillis() - inicio;
 
         return null;
 
@@ -103,7 +97,7 @@ public class Busca {
 
     public Peca buscaLinear(Peca[] pecas, String nome) {
 
-        inicio = System.currentTimeMillis();
+        long inicio = System.currentTimeMillis();
 
         int tamanho = pecas.length;
 
@@ -111,21 +105,19 @@ public class Busca {
 
             if (pecas[j].getNome().equals(nome)) {
 
-                fim = System.currentTimeMillis();
-                tempoBusca = fim - inicio;
+                tempoBuscaL = System.currentTimeMillis() - inicio;
                 return pecas[j];
             }
         }
 
-        fim = System.currentTimeMillis();
-        tempoBusca = fim - inicio;
+        tempoBuscaL = System.currentTimeMillis() - inicio;
         return null;
 
     }
 
     public Peca buscaLinear(Peca[] pecas, int id) {
 
-        inicio = System.currentTimeMillis();
+        long inicio = System.currentTimeMillis();
 
         int tamanho = pecas.length;
 
@@ -133,14 +125,13 @@ public class Busca {
 
             if (pecas[j].getId() == id) {
 
-                fim = System.currentTimeMillis();
-                tempoBusca = fim - inicio;
+                tempoBuscaL = System.currentTimeMillis() - inicio;
                 return pecas[j];
             }
         }
 
-        fim = System.currentTimeMillis();
-        tempoBusca = fim - inicio;
+        
+        tempoBuscaL = System.currentTimeMillis() - inicio;
         return null;
 
     }
@@ -149,8 +140,12 @@ public class Busca {
         return tempoOrdenar;
     }
 
-    public long getTempoBusca() {
-        return tempoBusca;
+   public long getTempoBuscaL() {
+        return tempoBuscaL;
+    }
+
+    public long getTempoBuscaB() {
+        return tempoBuscaB;
     }
 
 }

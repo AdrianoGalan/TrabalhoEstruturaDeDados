@@ -16,7 +16,7 @@
                <children>
                   <VBox alignment="TOP_CENTER" layoutX="46.0" layoutY="160.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <VBox alignment="TOP_CENTER" prefHeight="110.0" prefWidth="191.0">
+                        <VBox alignment="TOP_CENTER" prefHeight="78.0" prefWidth="191.0">
                            <children>
                               <Label text="Arquivo atual:">
                                  <font>
@@ -30,6 +30,11 @@
                               </Label>
                            </children>
                         </VBox>
+                        <Button mnemonicParsing="false" onAction="#btnInicio" prefHeight="54.0" prefWidth="191.0" text="Inicio">
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="5.0" right="5.0" />
+                           </VBox.margin>
+                        </Button>
                         <Button fx:id="btnMenuGerar" mnemonicParsing="false" onAction="#menuGerar" prefHeight="54.0" prefWidth="191.0" text="Gerar / Carregar dados">
                            <VBox.margin>
                               <Insets bottom="10.0" left="5.0" right="5.0" />

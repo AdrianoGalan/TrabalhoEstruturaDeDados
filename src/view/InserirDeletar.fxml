@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="580.0" prefWidth="580.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="viewController.InserirDeletarController">
+   <children>
+      <SplitPane dividerPositions="0.10606060606060606" layoutX="210.0" layoutY="190.0" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="49.0" prefWidth="578.0">
+               <children>
+                  <Label layoutX="23.0" layoutY="13.0" text="Inserir, Atualizar, Deletar">
+                     <font>
+                        <Font size="22.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+               <children>
+                  <Pane layoutX="189.0" layoutY="157.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <TextField fx:id="tfId" layoutX="14.0" layoutY="43.0" prefHeight="25.0" prefWidth="67.0" promptText="ID" />
+                        <Label layoutX="14.0" layoutY="25.0" text="Id" />
+                        <Label layoutX="88.0" layoutY="24.0" text="Nome:" />
+                        <TextField fx:id="tfNome" layoutX="88.0" layoutY="42.0" prefHeight="25.0" prefWidth="110.0" promptText="Nome" />
+                        <Label layoutX="207.0" layoutY="24.0" text="Marca" />
+                        <ComboBox fx:id="comBoxMarca" layoutX="207.0" layoutY="41.0" onAction="#acaoCBMarca" prefWidth="110.0" />
+                        <Label layoutX="325.0" layoutY="24.0" text="Modelo" />
+                        <TextField fx:id="tfPreco" layoutX="441.0" layoutY="42.0" prefHeight="25.0" prefWidth="110.0" promptText="Preço" />
+                        <Label layoutX="441.0" layoutY="24.0" text="Preço" />
+                        <Button layoutX="88.0" layoutY="84.0" mnemonicParsing="false" onAction="#btnAtualizar" prefHeight="25.0" prefWidth="110.0" text="Atualizar" />
+                        <Button layoutX="215.0" layoutY="84.0" mnemonicParsing="false" onAction="#btnInserir" prefHeight="25.0" prefWidth="110.0" text="Inserir" />
+                        <Button layoutX="346.0" layoutY="84.0" mnemonicParsing="false" onAction="#btnDeletar" prefHeight="25.0" prefWidth="110.0" text="Deletar" />
+                        <TableView fx:id="tbPeca" layoutX="15.0" layoutY="137.0" prefHeight="334.0" prefWidth="552.0">
+                           <columns>
+                              <TableColumn fx:id="tbPecaId" prefWidth="84.0" text="id" />
+                              <TableColumn fx:id="tbPecaNome" prefWidth="135.0" text="nome" />
+                              <TableColumn fx:id="tbPecaMarca" prefWidth="105.0" text="marca" />
+                              <TableColumn fx:id="tbPecaModelo" prefWidth="116.0" text="modelo" />
+                              <TableColumn fx:id="tbPecaPreco" prefWidth="111.0" text="Preço" />
+                           </columns>
+                        </TableView>
+                        <ComboBox fx:id="comBoxModelo" layoutX="322.0" layoutY="41.0" prefWidth="110.0" />
+                     </children>
+                  </Pane>
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </children> 
+</AnchorPane>

@@ -66,6 +66,8 @@ public class OrdenarController implements Initializable {
 
     @FXML
     private TextField tfNomeArquivo;
+    @FXML
+    private TextField tfTempMerge;
 
     /**
      * Initializes the controller class.
@@ -130,6 +132,26 @@ public class OrdenarController implements Initializable {
             iniciaTablela(pecas);
             tfTempInsertion.setText(String.valueOf(ordena.getTempoOrdenar()));
         }
+    }
+    
+     @FXML
+    private void btnOrdenarMerge(ActionEvent event) {
+        
+        long inicio = System.currentTimeMillis();
+        
+        if (pecas != null) {
+            tfTempMerge.setText("");
+            if (radioNome.isSelected()) {
+                pecas = ordena.mergeSortByName(pecas);
+            } else {
+                pecas = ordena.mergeSortById(pecas);
+            }
+            iniciaTablela(pecas);
+            tfTempMerge.setText(String.valueOf(System.currentTimeMillis() - inicio));
+
+        }
+
+        
     }
 
     @FXML
@@ -213,5 +235,7 @@ public class OrdenarController implements Initializable {
 
         return tabelas;
     }
+
+   
 
 }

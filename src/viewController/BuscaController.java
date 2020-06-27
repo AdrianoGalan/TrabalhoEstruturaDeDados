@@ -135,7 +135,7 @@ public class BuscaController implements Initializable {
         Peca peca = busca.buscaLinear(ArquivoAtual.getPecas(), nome);
 
         tfTempOrdLinear.setText("0");
-        tfTempBuscaLinear.setText(String.valueOf((busca.getTempoBusca())));
+        tfTempBuscaLinear.setText(String.valueOf((busca.getTempoBuscaL())));
         pbDinamica.setProgress(1);
 
         if (peca != null) {
@@ -153,7 +153,7 @@ public class BuscaController implements Initializable {
         Peca peca = busca.buscaLinear(ArquivoAtual.getPecas(), id);
 
         tfTempOrdLinear.setText("0");
-        tfTempBuscaLinear.setText(String.valueOf((busca.getTempoBusca())));
+        tfTempBuscaLinear.setText(String.valueOf((busca.getTempoBuscaL())));
         pbDinamica.setProgress(1);
 
         if (peca != null) {
@@ -170,7 +170,7 @@ public class BuscaController implements Initializable {
 
         Peca peca = busca.buscaBinaria(ArquivoAtual.getPecas(), nome);
 
-        tfTempBuscaBinaria.setText(String.valueOf(busca.getTempoBusca()));
+        tfTempBuscaBinaria.setText(String.valueOf(busca.getTempoBuscaB()));
         tfTempOrdBinaria.setText(String.valueOf(busca.getTempoOrdenar()));
         pbBinaria.setProgress(1);
 
@@ -189,7 +189,7 @@ public class BuscaController implements Initializable {
 
         Peca peca = busca.buscaBinaria(ArquivoAtual.getPecas(), id);
 
-        tfTempBuscaBinaria.setText(String.valueOf(busca.getTempoBusca()));
+        tfTempBuscaBinaria.setText(String.valueOf(busca.getTempoBuscaB()));
         tfTempOrdBinaria.setText(String.valueOf(busca.getTempoOrdenar()));
         pbBinaria.setProgress(1);
 

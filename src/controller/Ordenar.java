@@ -189,6 +189,194 @@ public class Ordenar {
         return pecas;
 
     }
+    
+    public Peca[] mergeSortById(Peca[] pecas) {
+
+		if (pecas.length <= 1) {
+
+			return pecas;
+
+		}
+
+		int midpoint = pecas.length / 2;
+
+		Peca[] left = new Peca[midpoint];
+	    Peca[] right;
+
+		if (pecas.length % 2 == 0) { 
+
+			right = new Peca[midpoint];
+
+		} else {
+
+			right = new Peca[midpoint + 1];
+
+		}
+
+		for (int i = 0; i < midpoint; i++) {
+
+			left[i] = pecas[i];
+
+		}
+
+		for (int j = 0; j < right.length; j++) {
+
+			right[j] = pecas[midpoint + j];
+
+		}
+
+		Peca[] result = new Peca[pecas.length]; 
+
+		left = mergeSortById(left);
+		right = mergeSortById(right);
+
+		result = mergeById(left, right);
+
+		return result;
+
+	}
+
+
+	private Peca[] mergeById(Peca[] left, Peca[] right) {
+
+		Peca[] result = new Peca[left.length + right.length];
+
+		int leftPoint, rightPoint, resultPoint;
+		leftPoint = rightPoint = resultPoint = 0;
+
+		while (leftPoint < left.length || rightPoint < right.length) {
+
+			if (leftPoint < left.length && rightPoint < right.length) {
+
+				if (left[leftPoint].getId() < right[rightPoint].getId()) {
+
+					result[resultPoint] = left[leftPoint];
+					resultPoint++;
+					leftPoint++;
+				} else {
+
+					result[resultPoint] = right[rightPoint];
+					resultPoint++;
+					rightPoint++;
+				}
+
+			}
+
+			else if (leftPoint < left.length) {
+
+				result[resultPoint] = left[leftPoint];
+				resultPoint++;
+				leftPoint++;
+			}
+
+			else if (rightPoint < right.length) {
+
+				result[resultPoint] = right[rightPoint];
+				resultPoint++;
+				rightPoint++;
+			}
+
+		}
+
+		return result;
+
+	}
+	
+	public Peca[] mergeSortByName(Peca[] pecas) {
+
+		if (pecas.length <= 1) {
+
+			return pecas;
+
+		}
+
+		int midpoint = pecas.length / 2;
+
+		Peca[] left = new Peca[midpoint];
+	    Peca[] right;
+
+		if (pecas.length % 2 == 0) { 
+
+			right = new Peca[midpoint];
+
+		} else {
+
+			right = new Peca[midpoint + 1];
+
+		}
+
+		for (int i = 0; i < midpoint; i++) {
+
+			left[i] = pecas[i];
+
+		}
+
+		for (int j = 0; j < right.length; j++) {
+
+			right[j] = pecas[midpoint + j];
+
+		}
+
+		Peca[] result = new Peca[pecas.length]; 
+
+		left = mergeSortByName(left);
+		right = mergeSortByName(right);
+
+		result = mergeByName(left, right);
+
+		return result;
+
+	}
+
+
+	private Peca[] mergeByName(Peca[] left, Peca[] right) {
+
+		Peca[] result = new Peca[left.length + right.length];
+
+		int leftPoint, rightPoint, resultPoint;
+		leftPoint = rightPoint = resultPoint = 0;
+
+		while (leftPoint < left.length || rightPoint < right.length) {
+
+			if (leftPoint < left.length && rightPoint < right.length) {
+
+				if (myComparator(left[leftPoint], right[rightPoint]) <= 0) {
+
+					result[resultPoint] = left[leftPoint];
+					resultPoint++;
+					leftPoint++;
+				} else {
+
+					result[resultPoint] = right[rightPoint];
+					resultPoint++;
+					rightPoint++;
+				}
+
+			}
+
+			else if (leftPoint < left.length) {
+
+				result[resultPoint] = left[leftPoint];
+				resultPoint++;
+				leftPoint++;
+			}
+
+			else if (rightPoint < right.length) {
+
+				result[resultPoint] = right[rightPoint];
+				resultPoint++;
+				rightPoint++;
+			}
+
+		}
+
+		return result;
+
+	}
+	
+	private int myComparator(Peca p1, Peca p2) {
+		return p1.getNome().toUpperCase().compareTo(p2.getNome().toUpperCase());
+	}
 
     public Peca[] quickSort(Peca[] pecas, int inic, int f, int tipo) {
 
@@ -211,33 +399,6 @@ public class Ordenar {
         tempoOrdenar = fim - inicio;
         return pecas;
 
-    }
-
-    private int partition(Peca[] pecas, int inicio, int fim) {
-        Peca ref, temp;
-        int up, down;
-        ref = pecas[inicio];
-        down = inicio;
-        up = fim;
-        while (down < up) {
-            // encontrando um numero maior que o pivo (ref)
-            while (pecas[down].getId() <= ref.getId() && down < fim) {
-                down++; // avanço pq quero encontrar um valor maior
-            }
-            // tambem quero encontrar a partir do fim um valor menor que o meu de referencia
-            while (pecas[up].getId() > ref.getId()) {
-                up--;
-            }
-            if (down < up) {  // eles não se cruzaram nos índices
-                //troca
-                temp = pecas[down];
-                pecas[down] = pecas[up];
-                pecas[up] = temp;
-            }
-        }
-        pecas[inicio] = pecas[up];
-        pecas[up] = ref;
-        return up; // no final das contas é a posição de UP que denota onde está o pivô
     }
 
     private int partitionNome(Peca[] pecas, int inicio, int fim) {
@@ -269,6 +430,33 @@ public class Ordenar {
         return up; // no final das contas é a posição de UP que denota onde está o pivô
     }
 
+    private int partition(Peca[] pecas, int inicio, int fim) {
+        Peca ref, temp;
+        int up, down;
+        ref = pecas[inicio];
+        down = inicio;
+        up = fim;
+        while (down < up) {
+            // encontrando um numero maior que o pivo (ref)
+            while (pecas[down].getId() <= ref.getId() && down < fim) {
+                down++; // avanço pq quero encontrar um valor maior
+            }
+            // tambem quero encontrar a partir do fim um valor menor que o meu de referencia
+            while (pecas[up].getId() > ref.getId()) {
+                up--;
+            }
+            if (down < up) {  // eles não se cruzaram nos índices
+                //troca
+                temp = pecas[down];
+                pecas[down] = pecas[up];
+                pecas[up] = temp;
+            }
+        }
+        pecas[inicio] = pecas[up];
+        pecas[up] = ref;
+        return up; // no final das contas é a posição de UP que denota onde está o pivô
+    }
+    
     public long getTempoOrdenar() {
         return tempoOrdenar;
     }

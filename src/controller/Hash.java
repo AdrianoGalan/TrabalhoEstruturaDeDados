@@ -10,6 +10,7 @@ public class Hash {
     private int idsLength;
     private Lista[] elementos;
     private long tempoBusca;
+    private int idAtual;
 
     public Hash(int numeroElementos) {
 
@@ -19,6 +20,8 @@ public class Hash {
         // vetor para busca direta por id
         idsLength = numeroElementos + (numeroElementos / 4);
         ids = new Peca[idsLength];
+        
+        idAtual = 1;
     }
 
     // insere um elemento na haspmap
@@ -26,7 +29,7 @@ public class Hash {
 
         if (elemento.getId() >= idsLength) {
 
-            ids = capacity();
+            capacity();
 
         }
 
@@ -37,6 +40,7 @@ public class Hash {
             elementos[key] = new Lista();
         }
         elementos[key].insert(elemento);
+        idAtual++;
     }
 
     public Peca search(String nome) {
@@ -83,7 +87,7 @@ public class Hash {
 
     }
 
-    private Peca[] capacity() {
+    private void capacity() {
 
         int novoIdsLength = idsLength + (idsLength / 4);
 
@@ -96,7 +100,7 @@ public class Hash {
 
         idsLength = novoIdsLength;
 
-        return novoIds;
+        ids = novoIds;
 
     }
 
@@ -107,6 +111,11 @@ public class Hash {
     public void setNumeroElementos(int numeroElementos) {
         this.numeroElementos = numeroElementos;
     }
+    
+    public Peca[] getPecas(){
+        
+        return ids;
+    }
 
     public Lista[] getElementos() {
         return elementos;
@@ -114,6 +123,10 @@ public class Hash {
 
     public long getTempoBusca() {
         return tempoBusca;
+    }
+
+    public int getIdAtual() {
+        return idAtual;
     }
     
     

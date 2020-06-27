@@ -49,6 +49,8 @@ public class PrincipalController implements Initializable {
         Timeline timeline = new Timeline(frame);
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();
+        
+        carregaTela("/view/Inicio.fxml");
 
     }
 
@@ -72,6 +74,8 @@ public class PrincipalController implements Initializable {
     
      @FXML
     private void btnInserirDeletar(ActionEvent event) {
+        
+        carregaTela("/view/InserirDeletar.fxml");
     }
 
     @FXML
@@ -80,6 +84,12 @@ public class PrincipalController implements Initializable {
 
     @FXML
     private void btnVerCod(ActionEvent event) {
+    }
+    
+     @FXML
+    private void btnInicio(ActionEvent event) {
+        
+        carregaTela("/view/Inicio.fxml");
     }
 
     public void carregaTela(String nomeTela) {
@@ -112,6 +122,8 @@ public class PrincipalController implements Initializable {
     private void atualizaArquivo() {
         lbArquivoAtual.setText(ArquivoAtual.getNome());
     }
+
+   
 
    
 
