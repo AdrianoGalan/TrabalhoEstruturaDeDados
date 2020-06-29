@@ -7,12 +7,15 @@ import java.awt.Desktop;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Peca;
@@ -27,13 +30,90 @@ public class ReadWrite {
     }
 
     //escreve peca arquivo txt
+    public void writeReport(String nomeMetodo, int nElementos, long tempo) {
+
+        String report = outReport(nomeMetodo, nElementos, tempo);
+
+        BufferedWriter writer;
+
+        File dir = new File("relatorio/");
+        File arq = new File("relatorio/", "relatorio.txt");
+
+        if (!dir.exists() && !dir.isDirectory()) {
+            dir.mkdir();
+        }
+
+        boolean existe = arq.exists();
+
+        try {
+
+            writer = new BufferedWriter(new FileWriter(arq, existe));
+
+            writer.write(report);
+            writer.newLine();
+
+            writer.close();
+
+        } catch (IOException ex) {
+            Logger.getLogger(ReadWrite.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    public String readReposrt() throws FileNotFoundException, IOException {
+
+        File arq = new File("relatorio/", "relatorio.txt");
+        StringBuilder texto = new StringBuilder();
+
+        if (arq.exists() && arq.isFile()) {
+
+            FileInputStream fluxo = new FileInputStream(arq);
+            InputStreamReader leitor = new InputStreamReader(fluxo);
+            BufferedReader buffer = new BufferedReader(leitor);
+            String linha = buffer.readLine();
+            while (linha != null) {
+
+                texto.append(linha);
+                texto.append("\r\n");
+                linha = buffer.readLine();
+            }
+            buffer.close();
+            leitor.close();
+            fluxo.close();
+
+            return texto.toString();
+
+        } else {
+            throw new IOException("Diretório inválido");
+        }
+
+    }
+
+    private String outReport(String nomeMetodo, int nElementos, long tempo) {
+
+        Calendar c = Calendar.getInstance();
+
+        String saida = ">>>" + nomeMetodo + "<<<\n";
+        saida = saida + c.getTime() + "\n";
+        saida = saida + "Numero de elementos: " + nElementos + "\n";
+        saida = saida + "Tempo de execução: " + tempo + " ms\n";
+        saida = saida + "--------------------------------------\n";
+
+        return saida;
+    }
+
     public void write(EstruturaDianmica objetoGravar, String nomeArquivo) {
 
         BufferedWriter writer;
 
+        File dir = new File("txt/");
+
+        if (!dir.exists() && !dir.isDirectory()) {
+            dir.mkdir();
+        }
+
         try {
 
-            // file.createNewFile();
             writer = new BufferedWriter(new FileWriter("txt/" + nomeArquivo + ".txt"));
 
             writer.write(objetoGravar.getNumerosElementos() + "");
@@ -295,11 +375,11 @@ public class ReadWrite {
 
     }
 
-    public ArrayList readDir() {
+    public ArrayList readDir(String path) {
 
         ArrayList<String> arquivos = new ArrayList();
 
-        String path = "txt/";
+       
 
         File file = new File(path);
         if (file.exists() && file.isDirectory()) {
@@ -336,9 +416,9 @@ public class ReadWrite {
 
     }
 
-    public void openFile(String name) throws IOException {
+    public void openFile(String name, String path) throws IOException {
 
-        String path = "txt/";
+        
 
         File arq = new File(path, name);
 

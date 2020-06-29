@@ -38,19 +38,19 @@ public class GerarController implements Initializable {
     @FXML
     private TableView<TableFie> tbArquivos;
     @FXML
+    private TableColumn<TableFie, String> tbNome;
+    @FXML
     private TextField lbNElementos;
     @FXML
     private TextField lbNomeArquivo;
     @FXML
-    private TableColumn<TableFie, String> tbNome;
-
-    private PrincipalController principal;
-    private ArrayList arquivos;
-    private ReadWrite rw = new ReadWrite();
-    @FXML
     private Button btnCarrega;
     @FXML
     private ProgressBar pBar;
+
+ 
+    private ArrayList arquivos;
+    private ReadWrite rw;
 
     /**
      * Initializes the controller class.
@@ -58,14 +58,15 @@ public class GerarController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
+        rw = new ReadWrite();
+
         iniciaTablelaArquivos();
-        
-         
+
     }
 
     @FXML
     private void btnGerar(ActionEvent event) {
-        
+
         pBar.setProgress(-1);
         gerarArquivo();
     }
@@ -104,9 +105,11 @@ public class GerarController implements Initializable {
     private void btnCarregaArquivo(ActionEvent event) {
 
         pBar.setProgress(-1);
-        
-        if(pBar.getProgress() == -1){
-        carrega();
+
+        if (pBar.getProgress() == -1) {
+
+            carrega();
+
         }
     }
 
@@ -120,7 +123,7 @@ public class GerarController implements Initializable {
 
     private ObservableList<TableFie> atualizaTabela() {
 
-        arquivos = rw.readDir();
+        arquivos = rw.readDir("txt/");
         return FXCollections.observableArrayList(carregaTabela());
     }
 
@@ -157,6 +160,7 @@ public class GerarController implements Initializable {
                     pBar.setProgress(1);
                     lbNElementos.setText("");
                     lbNomeArquivo.setText("");
+                    JOptionPane.showMessageDialog(null, "Arquivo gerado");
 
                 } else {
                     JOptionPane.showMessageDialog(null, "Digite o nome do arquivo");
@@ -171,22 +175,26 @@ public class GerarController implements Initializable {
         }
     }
 
-    private void carrega() {       
-    
+    private void carrega() {
+
         TableFie arqSelecionado = tbArquivos.getSelectionModel().getSelectedItem();
         String nome;
 
         if (arqSelecionado != null) {
+
+            long inicio = System.currentTimeMillis();
+
             nome = arqSelecionado.getNome();
-            
-           
+
             ArquivoAtual.setHashAtual(rw.readHash(nome));
             ArquivoAtual.setPecas(rw.readVetor(nome));
             pBar.setProgress(1);
             ArquivoAtual.setNome(nome);
 
+            rw.writeReport("Carregar Arquivo", ArquivoAtual.getHashAtual().getNumeroElementos(), System.currentTimeMillis() - inicio);
+
             JOptionPane.showMessageDialog(null, "Arquivo carregado");
-            
+
         } else {
             JOptionPane.showMessageDialog(null, "Seleciona um arquivo");
         }
@@ -203,7 +211,7 @@ public class GerarController implements Initializable {
             if (arqSelecionado != null) {
                 nome = arqSelecionado.getNome();
 
-                rw.openFile(nome);
+                rw.openFile(nome, "txt/");
 
                 iniciaTablelaArquivos();
 

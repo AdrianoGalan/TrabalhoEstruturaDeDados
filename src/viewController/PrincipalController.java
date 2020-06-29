@@ -80,10 +80,13 @@ public class PrincipalController implements Initializable {
 
     @FXML
     private void btnRelatorio(ActionEvent event) {
+        carregaTela("/view/Relatorio.fxml");
     }
 
     @FXML
     private void btnVerCod(ActionEvent event) {
+        
+        carregaTela("/view/Codigo.fxml");
     }
     
      @FXML

@@ -2,7 +2,7 @@ package util;
 
 import controller.EstruturaDianmica;
 import controller.Lista;
-import java.text.DecimalFormat;
+import dao.ReadWrite;
 import java.util.Random;
 import model.Peca;
 
@@ -10,13 +10,19 @@ public class GerarDadosEntrada {
 
     private Random rand = new Random();
     private String[] marcas = {"AUDI", "BMW", "CHEVROLET", "FIAT", "FORD", "HONDA", "TOYOTA", "VOLKSWAGEN"};
+    private ReadWrite rw;
+    
 
     public GerarDadosEntrada() {
+        
+        rw = new ReadWrite();
 
     }
 
     public EstruturaDianmica gerarDados(int NumerosElementos) {
 
+        long inicio = System.currentTimeMillis();
+        
         Lista pecas = new Lista();
 
         for (int i = 1; i <= NumerosElementos; i++) {
@@ -30,7 +36,9 @@ public class GerarDadosEntrada {
             pecas.insert(peca);
 
         }
-
+        
+        rw.writeReport("Gerar massa dados", NumerosElementos, System.currentTimeMillis() - inicio);
+        
         return pecas;
 
     }

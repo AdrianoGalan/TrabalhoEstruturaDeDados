@@ -24,7 +24,6 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javax.swing.JOptionPane;
 import model.Peca;
-import modelTable.TableFie;
 
 /**
  * FXML Controller class
@@ -98,6 +97,7 @@ public class OrdenarController implements Initializable {
             }
             iniciaTablela(pecas);
             tfTempBublle.setText(String.valueOf(ordena.getTempoOrdenar()));
+            rw.writeReport("Ordena Bubble Sort", ArquivoAtual.getHashAtual().getNumeroElementos(), ordena.getTempoOrdenar());
         }
 
     }
@@ -114,6 +114,7 @@ public class OrdenarController implements Initializable {
             }
             iniciaTablela(pecas);
             tfTempSelection.setText(String.valueOf(ordena.getTempoOrdenar()));
+            rw.writeReport("Ordena Selection Sort", ArquivoAtual.getHashAtual().getNumeroElementos(), ordena.getTempoOrdenar());
 
         }
 
@@ -131,13 +132,14 @@ public class OrdenarController implements Initializable {
             }
             iniciaTablela(pecas);
             tfTempInsertion.setText(String.valueOf(ordena.getTempoOrdenar()));
+            rw.writeReport("Ordena Insertion Sort", ArquivoAtual.getHashAtual().getNumeroElementos(), ordena.getTempoOrdenar());
         }
     }
 
     @FXML
     private void btnOrdenarMerge(ActionEvent event) {
 
-        long inicio = System.currentTimeMillis();
+        long temp, inicio = System.currentTimeMillis();
 
         if (pecas != null) {
             tfTempMerge.setText("");
@@ -147,8 +149,9 @@ public class OrdenarController implements Initializable {
                 pecas = ordena.mergeSortById(pecas);
             }
             iniciaTablela(pecas);
-            tfTempMerge.setText(String.valueOf(System.currentTimeMillis() - inicio));
-
+            temp = System.currentTimeMillis() - inicio;
+            tfTempMerge.setText(String.valueOf(temp));
+            rw.writeReport("Ordena Merge Sort", ArquivoAtual.getHashAtual().getNumeroElementos(), temp);
         }
 
     }
@@ -156,7 +159,7 @@ public class OrdenarController implements Initializable {
     @FXML
     private void btnOrdenarQuick(ActionEvent event) {
 
-        long inicio;
+        long inicio, temp;
 
         if (pecas != null) {
             tfTempQuick.setText("");
@@ -171,7 +174,9 @@ public class OrdenarController implements Initializable {
                 pecas = ordena.quickSort(pecas, 0, (pecas.length - 1), 1);
             }
             iniciaTablela(pecas);
-            tfTempQuick.setText(String.valueOf(System.currentTimeMillis() - inicio));
+            temp = System.currentTimeMillis() - inicio;
+            tfTempQuick.setText(String.valueOf(temp));
+            rw.writeReport("Ordena Quick Sort", ArquivoAtual.getHashAtual().getNumeroElementos(), temp);
         }
 
     }

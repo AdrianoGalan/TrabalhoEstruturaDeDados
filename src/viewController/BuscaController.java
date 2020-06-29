@@ -7,13 +7,12 @@ package viewController;
 
 import controller.ArquivoAtual;
 import controller.Busca;
+import dao.ReadWrite;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
 import javax.swing.JOptionPane;
@@ -54,7 +53,7 @@ public class BuscaController implements Initializable {
     private ProgressBar pbBinaria;
     private double i = 0;
     private Busca busca;
-   
+    private ReadWrite rw;
 
     /**
      * Initializes the controller class.
@@ -63,6 +62,7 @@ public class BuscaController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
 
         busca = new Busca();
+        rw = new ReadWrite();
 
     }
 
@@ -104,6 +104,8 @@ public class BuscaController implements Initializable {
         tfTempBuscaHash.setText(String.valueOf(ArquivoAtual.getHashAtual().getTempoBusca()));
         pbHash.setProgress(1);
 
+        rw.writeReport("Busca HashMap por Nome", ArquivoAtual.getHashAtual().getNumeroElementos(), ArquivoAtual.getHashAtual().getTempoBusca());
+
         if (peca != null) {
 
             tfReturnHash.setText(peca.toString());
@@ -114,11 +116,13 @@ public class BuscaController implements Initializable {
     }
 
     private void buscaHash(int id) {
-        
-         Peca peca = ArquivoAtual.getHashAtual().search(id);
+
+        Peca peca = ArquivoAtual.getHashAtual().search(id);
         tfTempOrdHash.setText("0");
         tfTempBuscaHash.setText(String.valueOf(ArquivoAtual.getHashAtual().getTempoBusca()));
         pbHash.setProgress(1);
+
+        rw.writeReport("Busca HashMap por Id", ArquivoAtual.getHashAtual().getNumeroElementos(), ArquivoAtual.getHashAtual().getTempoBusca());
 
         if (peca != null) {
 
@@ -138,6 +142,8 @@ public class BuscaController implements Initializable {
         tfTempBuscaLinear.setText(String.valueOf((busca.getTempoBuscaL())));
         pbDinamica.setProgress(1);
 
+        rw.writeReport("Busca Linear por Nome", ArquivoAtual.getHashAtual().getNumeroElementos(), busca.getTempoBuscaL());
+
         if (peca != null) {
 
             tfReturnLinear.setText(peca.toString());
@@ -147,7 +153,7 @@ public class BuscaController implements Initializable {
         }
 
     }
-    
+
     private void buscaLinear(int id) {
 
         Peca peca = busca.buscaLinear(ArquivoAtual.getPecas(), id);
@@ -155,6 +161,8 @@ public class BuscaController implements Initializable {
         tfTempOrdLinear.setText("0");
         tfTempBuscaLinear.setText(String.valueOf((busca.getTempoBuscaL())));
         pbDinamica.setProgress(1);
+
+        rw.writeReport("Busca Linear por Id", ArquivoAtual.getHashAtual().getNumeroElementos(), busca.getTempoBuscaL());
 
         if (peca != null) {
 
@@ -174,6 +182,8 @@ public class BuscaController implements Initializable {
         tfTempOrdBinaria.setText(String.valueOf(busca.getTempoOrdenar()));
         pbBinaria.setProgress(1);
 
+        rw.writeReport("Busca Binaria por Nome", ArquivoAtual.getHashAtual().getNumeroElementos(), busca.getTempoBuscaB() + busca.getTempoOrdenar());
+
         if (peca != null) {
             tfReturnBinaria.setText(peca.toString());
 
@@ -184,7 +194,7 @@ public class BuscaController implements Initializable {
         }
 
     }
-    
+
     private void buscaBinaria(int id) {
 
         Peca peca = busca.buscaBinaria(ArquivoAtual.getPecas(), id);
@@ -192,6 +202,8 @@ public class BuscaController implements Initializable {
         tfTempBuscaBinaria.setText(String.valueOf(busca.getTempoBuscaB()));
         tfTempOrdBinaria.setText(String.valueOf(busca.getTempoOrdenar()));
         pbBinaria.setProgress(1);
+
+        rw.writeReport("Busca Binaria por Id", ArquivoAtual.getHashAtual().getNumeroElementos(), busca.getTempoBuscaB() + busca.getTempoOrdenar());
 
         if (peca != null) {
             tfReturnBinaria.setText(peca.toString());
