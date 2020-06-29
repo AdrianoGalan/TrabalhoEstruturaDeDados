@@ -16,7 +16,6 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -59,12 +58,15 @@ public class InserirDeletarController implements Initializable {
     private ObservableList<String> modelos;
     private Hash hashPecas;
     private Peca[] pecas;
+    private ReadWrite rw;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+
+        rw = new ReadWrite();
 
         marcas = FXCollections.observableArrayList("AUDI", "BMW", "CHEVROLET", "FIAT", "FORD", "HONDA", "TOYOTA", "VOLKSWAGEN");
         comBoxMarca.setItems(marcas);
@@ -80,20 +82,39 @@ public class InserirDeletarController implements Initializable {
 
     @FXML
     private void btnAtualizar(ActionEvent event) {
+        
+        if (validaCampos()) {
+
+            atualizar();
+        }
     }
 
     @FXML
     private void btnInserir(ActionEvent event) {
-        
-        if(validaCampos()){
-            
+
+        if (validaCampos()) {
+
             inserir();
         }
-        
+
     }
 
     @FXML
     private void btnDeletar(ActionEvent event) {
+
+        if (!tfId.getText().equals("")) {
+            Peca peca = tbPeca.getSelectionModel().getSelectedItem();
+            hashPecas.remove(peca);
+            ArquivoAtual.setHashAtual(hashPecas);
+            pecas = hashPecas.getPecas();
+                       
+            rw.write(hashPecas, nomeArquivo());
+
+            limparCampos();
+            iniciaTablela(pecas);
+        } else {
+            JOptionPane.showMessageDialog(null, "Selecione um item");
+        }
     }
 
     @FXML
@@ -103,13 +124,42 @@ public class InserirDeletarController implements Initializable {
 
     }
 
+    @FXML
+    private void btnGravarTxt(ActionEvent event) {
+    }
+
+    @FXML
+    private void btnSelecionar(ActionEvent event) {
+
+        selecionarItem();
+    }
+
+    private void selecionarItem() {
+
+        Peca peca = tbPeca.getSelectionModel().getSelectedItem();
+
+        if (peca != null) {
+
+            tfId.setText(String.valueOf(peca.getId()));
+            tfPreco.setText(String.valueOf(peca.getPreco()));
+            tfNome.setText(peca.getNome());
+            comBoxMarca.setValue(peca.getMarca());
+            comBoxModelo.setValue(peca.getModelo());
+
+        } else {
+
+            JOptionPane.showMessageDialog(null, "Seleciona um item");
+        }
+
+    }
+
     private boolean validaCampos() {
 
         if (!tfNome.getText().equals("")) {
             if (!comBoxMarca.getValue().equals("")) {
                 if (!comBoxModelo.getValue().equals("")) {
-                    if(!tfPreco.getText().equals("")){
-                        
+                    if (!tfPreco.getText().equals("")) {
+
                         return true;
                     }
 
@@ -127,31 +177,56 @@ public class InserirDeletarController implements Initializable {
         return false;
     }
 
-    private void inserir(){
+    private void inserir() {
+
+        ArquivoAtual.setPecas(rw.readVetor(ArquivoAtual.getNome()));
         
         Peca elemento = new Peca();
-        elemento.setId(hashPecas.getIdAtual());
+        elemento.setId(rw.getUltimoId()+1);
+        elemento.setNome(tfNome.getText().toUpperCase());
+        elemento.setMarca(comBoxMarca.getValue());
+        elemento.setModelo(comBoxModelo.getValue());
+        elemento.setPreco(Double.parseDouble(tfPreco.getText()));
+        hashPecas.put(elemento);
+        hashPecas.setNumeroElementos(hashPecas.getNumeroElementos() + 1);
+        pecas = hashPecas.getPecas();
+        ArquivoAtual.setHashAtual(hashPecas);
+        ArquivoAtual.setPecas(pecas);
+        rw.write(hashPecas, nomeArquivo());
+
+        limparCampos();
+
+        iniciaTablela(pecas);
+    }
+   
+    private void atualizar() {
+
+        Peca elemento = new Peca();
+        elemento.setId(Integer.parseInt(tfId.getText()));
         elemento.setNome(tfNome.getText().toUpperCase());
         elemento.setMarca(comBoxMarca.getValue());
         elemento.setModelo(comBoxModelo.getValue());
         elemento.setPreco(Double.parseDouble(tfPreco.getText()));
         hashPecas.put(elemento);
         pecas = hashPecas.getPecas();
-      
+        ArquivoAtual.setHashAtual(hashPecas);
+        ArquivoAtual.setPecas(pecas);
+        rw.write(hashPecas, nomeArquivo());
+
         limparCampos();
-        
+
         iniciaTablela(pecas);
     }
-    
-    private void limparCampos(){
+
+    private void limparCampos() {
         tfId.setText("");
         tfNome.setText("");
         tfPreco.setText("");
         comBoxMarca.setValue("");
         comBoxModelo.setValue("");
-        
+
     }
-    
+
     private void listarMdelo() {
 
         switch (comBoxMarca.getValue()) {
@@ -228,20 +303,32 @@ public class InserirDeletarController implements Initializable {
 
         ArrayList<Peca> tabelas = new ArrayList();
 
-        for (int i = 1; i < pecasTable.length && pecasTable[i] != null; i++) {
+        for (int i = 0; i < pecasTable.length; i++) {
 
-            Peca tabela = new Peca();
-            tabela.setId(pecasTable[i].getId());
-            tabela.setNome(pecasTable[i].getNome());
-            tabela.setMarca(pecasTable[i].getMarca());
-            tabela.setModelo(pecasTable[i].getModelo());
-            tabela.setPreco(pecasTable[i].getPreco());
-            tabelas.add(tabela);
+            if (pecasTable[i] != null) {
+                Peca tabela = new Peca();
+                tabela.setId(pecasTable[i].getId());
+                tabela.setNome(pecasTable[i].getNome());
+                tabela.setMarca(pecasTable[i].getMarca());
+                tabela.setModelo(pecasTable[i].getModelo());
+                tabela.setPreco(pecasTable[i].getPreco());
+                tabelas.add(tabela);
+            }
+
         }
 
         return tabelas;
     }
 
-    
+    private String nomeArquivo() {
+
+        String nome = ArquivoAtual.getNome();
+
+        nome = nome.substring(0, nome.length() - 4);
+        System.out.println(nome);
+        
+        return nome;
+
+    }
 
 }

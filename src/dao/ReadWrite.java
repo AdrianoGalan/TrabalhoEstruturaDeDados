@@ -2,7 +2,6 @@ package dao;
 
 import controller.EstruturaDianmica;
 import controller.Hash;
-import controller.Lista;
 import controller.No;
 import java.awt.Desktop;
 import java.io.BufferedReader;
@@ -12,12 +11,20 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Peca;
 
 public class ReadWrite {
+
+    private int ultimoId;
+
+    public ReadWrite() {
+
+        ultimoId = 0;
+    }
 
     //escreve peca arquivo txt
     public void write(EstruturaDianmica objetoGravar, String nomeArquivo) {
@@ -37,6 +44,30 @@ public class ReadWrite {
 
         } catch (IOException ex) {
             Logger.getLogger(ReadWrite.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    public boolean upFile(Peca peca, String name) throws IOException {
+
+        String conteudo = returnSave(peca);
+        String path = "txt/";
+        File dir = new File(path);
+        File arq = new File(path, name);
+
+        if (dir.exists() && dir.isDirectory()) {
+            boolean existe = arq.exists();
+
+            FileWriter fileWriter = new FileWriter(arq, existe);
+            PrintWriter print = new PrintWriter(fileWriter);
+            print.write(conteudo);
+            print.flush();
+            print.close();
+            fileWriter.close();
+            return true;
+
+        } else {
+            throw new IOException("Diretório inválido");
         }
 
     }
@@ -99,39 +130,59 @@ public class ReadWrite {
 
     }
 
+    private String returnSave(Peca objetoGravar) {
+
+        StringBuilder saida = new StringBuilder();
+
+        saida.append("\n");
+        saida.append(objetoGravar.getId());
+        saida.append(";");
+        saida.append(objetoGravar.getNome());
+        saida.append(";");
+        saida.append(objetoGravar.getMarca());
+        saida.append(";");
+        saida.append(objetoGravar.getModelo());
+        saida.append(";");
+        saida.append(objetoGravar.getPreco());
+
+        return saida.toString();
+
+    }
+
     private String returnSave(EstruturaDianmica objetoGravar) {
 
         StringBuilder saida = new StringBuilder();
 
         No aux = objetoGravar.getInicio();
 
-        saida.append("\n");
-        saida.append(objetoGravar.getInicio().getElemento().getId());
-        saida.append(";");
-        saida.append(objetoGravar.getInicio().getElemento().getNome());
-        saida.append(";");
-        saida.append(objetoGravar.getInicio().getElemento().getMarca());
-        saida.append(";");
-        saida.append(objetoGravar.getInicio().getElemento().getModelo());
-        saida.append(";");
-        saida.append(objetoGravar.getInicio().getElemento().getPreco());
-
-        while (aux.getProximo() != objetoGravar.getInicio()) {
-
-            aux = aux.getProximo();
+        if (objetoGravar != null && objetoGravar.getInicio() != null && objetoGravar.getInicio().getElemento() != null) {
             saida.append("\n");
-            saida.append(aux.getElemento().getId());
+            saida.append(objetoGravar.getInicio().getElemento().getId());
             saida.append(";");
-            saida.append(aux.getElemento().getNome());
+            saida.append(objetoGravar.getInicio().getElemento().getNome());
             saida.append(";");
-            saida.append(aux.getElemento().getMarca());
+            saida.append(objetoGravar.getInicio().getElemento().getMarca());
             saida.append(";");
-            saida.append(aux.getElemento().getModelo());
+            saida.append(objetoGravar.getInicio().getElemento().getModelo());
             saida.append(";");
-            saida.append(aux.getElemento().getPreco());
+            saida.append(objetoGravar.getInicio().getElemento().getPreco());
 
+            while (aux.getProximo() != objetoGravar.getInicio()) {
+
+                aux = aux.getProximo();
+                saida.append("\n");
+                saida.append(aux.getElemento().getId());
+                saida.append(";");
+                saida.append(aux.getElemento().getNome());
+                saida.append(";");
+                saida.append(aux.getElemento().getMarca());
+                saida.append(";");
+                saida.append(aux.getElemento().getModelo());
+                saida.append(";");
+                saida.append(aux.getElemento().getPreco());
+
+            }
         }
-
         return saida.toString();
 
     }
@@ -177,7 +228,7 @@ public class ReadWrite {
                 ler = read.readLine().split(";");
 
             } catch (Exception e) {
-                System.out.println("deu merda no nome");
+
                 ler = null;
             }
 
@@ -225,6 +276,9 @@ public class ReadWrite {
                     pecas[i].setMarca(ler[2]);
                     pecas[i].setModelo(ler[3]);
                     pecas[i].setPreco(Double.parseDouble(ler[4]));
+                    if (ultimoId < pecas[i].getId()) {
+                        ultimoId = pecas[i].getId();
+                    }
                     ler = read.readLine().split(";");
                 }
 
@@ -297,6 +351,10 @@ public class ReadWrite {
             throw new IOException("Diretório inválido");
         }
 
+    }
+
+    public int getUltimoId() {
+        return ultimoId;
     }
 
 }

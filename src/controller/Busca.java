@@ -8,7 +8,6 @@ public class Busca {
     private Ordenar ordenar;
     private long tempoOrdenar, tempoBuscaL, tempoBuscaB, inicOr, fimOr;
 
-   
     private ReadWrite rw;
 
     public Busca() {
@@ -103,10 +102,12 @@ public class Busca {
 
         for (int j = 0; j < tamanho; j++) {
 
-            if (pecas[j].getNome().equals(nome)) {
+            if (pecas[j] != null) {
+                if (pecas[j].getNome().equals(nome)) {
 
-                tempoBuscaL = System.currentTimeMillis() - inicio;
-                return pecas[j];
+                    tempoBuscaL = System.currentTimeMillis() - inicio;
+                    return pecas[j];
+                }
             }
         }
 
@@ -130,7 +131,6 @@ public class Busca {
             }
         }
 
-        
         tempoBuscaL = System.currentTimeMillis() - inicio;
         return null;
 
@@ -140,7 +140,7 @@ public class Busca {
         return tempoOrdenar;
     }
 
-   public long getTempoBuscaL() {
+    public long getTempoBuscaL() {
         return tempoBuscaL;
     }
 

@@ -49,11 +49,13 @@ public class Ordenar {
         for (i = 0; i < pecas.length - 1; i++) {
             for (pos = 0; pos < pecas.length - i - 1; pos++) {
                 // comparo o elemento da posicao com seu proximo
-                if (pecas[pos].getNome().compareTo(pecas[pos + 1].getNome()) > 0) {
+                if (pecas[pos] != null) {
+                    if (pecas[pos].getNome().compareTo(pecas[pos + 1].getNome()) > 0) {
 
-                    temp = pecas[pos];
-                    pecas[pos] = pecas[pos + 1];
-                    pecas[pos + 1] = temp;
+                        temp = pecas[pos];
+                        pecas[pos] = pecas[pos + 1];
+                        pecas[pos + 1] = temp;
+                    }
                 }
             }
 
@@ -112,9 +114,10 @@ public class Ordenar {
             posMenorInicial = it;
             posMenor = it + 1;
             for (i = posMenorInicial + 1; i < pecas.length; i++) {
-                //  if (pecas[i].getId() < pecas[posMenor].getId()) {
-                if (pecas[i].getNome().compareTo(pecas[posMenor].getNome()) < 0) {
-                    posMenor = i;
+                if (pecas[i] != null) {
+                    if (pecas[i].getNome().compareTo(pecas[posMenor].getNome()) < 0) {
+                        posMenor = i;
+                    }
                 }
             }
             //   if (pecas[posMenor].getId() < pecas[posMenorInicial].getId()) {
@@ -189,194 +192,184 @@ public class Ordenar {
         return pecas;
 
     }
-    
+
     public Peca[] mergeSortById(Peca[] pecas) {
 
-		if (pecas.length <= 1) {
+        if (pecas.length <= 1) {
 
-			return pecas;
+            return pecas;
 
-		}
+        }
 
-		int midpoint = pecas.length / 2;
+        int midpoint = pecas.length / 2;
 
-		Peca[] left = new Peca[midpoint];
-	    Peca[] right;
+        Peca[] left = new Peca[midpoint];
+        Peca[] right;
 
-		if (pecas.length % 2 == 0) { 
+        if (pecas.length % 2 == 0) {
 
-			right = new Peca[midpoint];
+            right = new Peca[midpoint];
 
-		} else {
+        } else {
 
-			right = new Peca[midpoint + 1];
+            right = new Peca[midpoint + 1];
 
-		}
+        }
 
-		for (int i = 0; i < midpoint; i++) {
+        for (int i = 0; i < midpoint; i++) {
 
-			left[i] = pecas[i];
+            left[i] = pecas[i];
 
-		}
+        }
 
-		for (int j = 0; j < right.length; j++) {
+        for (int j = 0; j < right.length; j++) {
 
-			right[j] = pecas[midpoint + j];
+            right[j] = pecas[midpoint + j];
 
-		}
+        }
 
-		Peca[] result = new Peca[pecas.length]; 
+        Peca[] result = new Peca[pecas.length];
 
-		left = mergeSortById(left);
-		right = mergeSortById(right);
+        left = mergeSortById(left);
+        right = mergeSortById(right);
 
-		result = mergeById(left, right);
+        result = mergeById(left, right);
 
-		return result;
+        return result;
 
-	}
+    }
 
+    private Peca[] mergeById(Peca[] left, Peca[] right) {
 
-	private Peca[] mergeById(Peca[] left, Peca[] right) {
+        Peca[] result = new Peca[left.length + right.length];
 
-		Peca[] result = new Peca[left.length + right.length];
+        int leftPoint, rightPoint, resultPoint;
+        leftPoint = rightPoint = resultPoint = 0;
 
-		int leftPoint, rightPoint, resultPoint;
-		leftPoint = rightPoint = resultPoint = 0;
+        while (leftPoint < left.length || rightPoint < right.length) {
 
-		while (leftPoint < left.length || rightPoint < right.length) {
+            if (leftPoint < left.length && rightPoint < right.length) {
 
-			if (leftPoint < left.length && rightPoint < right.length) {
+                if (left[leftPoint].getId() < right[rightPoint].getId()) {
 
-				if (left[leftPoint].getId() < right[rightPoint].getId()) {
+                    result[resultPoint] = left[leftPoint];
+                    resultPoint++;
+                    leftPoint++;
+                } else {
 
-					result[resultPoint] = left[leftPoint];
-					resultPoint++;
-					leftPoint++;
-				} else {
+                    result[resultPoint] = right[rightPoint];
+                    resultPoint++;
+                    rightPoint++;
+                }
 
-					result[resultPoint] = right[rightPoint];
-					resultPoint++;
-					rightPoint++;
-				}
+            } else if (leftPoint < left.length) {
 
-			}
+                result[resultPoint] = left[leftPoint];
+                resultPoint++;
+                leftPoint++;
+            } else if (rightPoint < right.length) {
 
-			else if (leftPoint < left.length) {
+                result[resultPoint] = right[rightPoint];
+                resultPoint++;
+                rightPoint++;
+            }
 
-				result[resultPoint] = left[leftPoint];
-				resultPoint++;
-				leftPoint++;
-			}
+        }
 
-			else if (rightPoint < right.length) {
+        return result;
 
-				result[resultPoint] = right[rightPoint];
-				resultPoint++;
-				rightPoint++;
-			}
+    }
 
-		}
+    public Peca[] mergeSortByName(Peca[] pecas) {
 
-		return result;
+        if (pecas.length <= 1) {
 
-	}
-	
-	public Peca[] mergeSortByName(Peca[] pecas) {
+            return pecas;
 
-		if (pecas.length <= 1) {
+        }
 
-			return pecas;
+        int midpoint = pecas.length / 2;
 
-		}
+        Peca[] left = new Peca[midpoint];
+        Peca[] right;
 
-		int midpoint = pecas.length / 2;
+        if (pecas.length % 2 == 0) {
 
-		Peca[] left = new Peca[midpoint];
-	    Peca[] right;
+            right = new Peca[midpoint];
 
-		if (pecas.length % 2 == 0) { 
+        } else {
 
-			right = new Peca[midpoint];
+            right = new Peca[midpoint + 1];
 
-		} else {
+        }
 
-			right = new Peca[midpoint + 1];
+        for (int i = 0; i < midpoint; i++) {
 
-		}
+            left[i] = pecas[i];
 
-		for (int i = 0; i < midpoint; i++) {
+        }
 
-			left[i] = pecas[i];
+        for (int j = 0; j < right.length; j++) {
 
-		}
+            right[j] = pecas[midpoint + j];
 
-		for (int j = 0; j < right.length; j++) {
+        }
 
-			right[j] = pecas[midpoint + j];
+        Peca[] result = new Peca[pecas.length];
 
-		}
+        left = mergeSortByName(left);
+        right = mergeSortByName(right);
 
-		Peca[] result = new Peca[pecas.length]; 
+        result = mergeByName(left, right);
 
-		left = mergeSortByName(left);
-		right = mergeSortByName(right);
+        return result;
 
-		result = mergeByName(left, right);
+    }
 
-		return result;
+    private Peca[] mergeByName(Peca[] left, Peca[] right) {
 
-	}
+        Peca[] result = new Peca[left.length + right.length];
 
+        int leftPoint, rightPoint, resultPoint;
+        leftPoint = rightPoint = resultPoint = 0;
 
-	private Peca[] mergeByName(Peca[] left, Peca[] right) {
+        while (leftPoint < left.length || rightPoint < right.length) {
 
-		Peca[] result = new Peca[left.length + right.length];
+            if (leftPoint < left.length && rightPoint < right.length) {
 
-		int leftPoint, rightPoint, resultPoint;
-		leftPoint = rightPoint = resultPoint = 0;
+                if (myComparator(left[leftPoint], right[rightPoint]) <= 0) {
 
-		while (leftPoint < left.length || rightPoint < right.length) {
+                    result[resultPoint] = left[leftPoint];
+                    resultPoint++;
+                    leftPoint++;
+                } else {
 
-			if (leftPoint < left.length && rightPoint < right.length) {
+                    result[resultPoint] = right[rightPoint];
+                    resultPoint++;
+                    rightPoint++;
+                }
 
-				if (myComparator(left[leftPoint], right[rightPoint]) <= 0) {
+            } else if (leftPoint < left.length) {
 
-					result[resultPoint] = left[leftPoint];
-					resultPoint++;
-					leftPoint++;
-				} else {
+                result[resultPoint] = left[leftPoint];
+                resultPoint++;
+                leftPoint++;
+            } else if (rightPoint < right.length) {
 
-					result[resultPoint] = right[rightPoint];
-					resultPoint++;
-					rightPoint++;
-				}
+                result[resultPoint] = right[rightPoint];
+                resultPoint++;
+                rightPoint++;
+            }
 
-			}
+        }
 
-			else if (leftPoint < left.length) {
+        return result;
 
-				result[resultPoint] = left[leftPoint];
-				resultPoint++;
-				leftPoint++;
-			}
+    }
 
-			else if (rightPoint < right.length) {
-
-				result[resultPoint] = right[rightPoint];
-				resultPoint++;
-				rightPoint++;
-			}
-
-		}
-
-		return result;
-
-	}
-	
-	private int myComparator(Peca p1, Peca p2) {
-		return p1.getNome().toUpperCase().compareTo(p2.getNome().toUpperCase());
-	}
+    private int myComparator(Peca p1, Peca p2) {
+        return p1.getNome().toUpperCase().compareTo(p2.getNome().toUpperCase());
+    }
 
     public Peca[] quickSort(Peca[] pecas, int inic, int f, int tipo) {
 
@@ -456,7 +449,7 @@ public class Ordenar {
         pecas[up] = ref;
         return up; // no final das contas é a posição de UP que denota onde está o pivô
     }
-    
+
     public long getTempoOrdenar() {
         return tempoOrdenar;
     }

@@ -77,7 +77,7 @@ public class OrdenarController implements Initializable {
 
         rw = new ReadWrite();
 
-        pecas = ArquivoAtual.getPecas();
+        pecas = rw.readVetor(ArquivoAtual.getNome());
         ordena = new Ordenar();
 
         if (pecas != null) {
@@ -133,12 +133,12 @@ public class OrdenarController implements Initializable {
             tfTempInsertion.setText(String.valueOf(ordena.getTempoOrdenar()));
         }
     }
-    
-     @FXML
+
+    @FXML
     private void btnOrdenarMerge(ActionEvent event) {
-        
+
         long inicio = System.currentTimeMillis();
-        
+
         if (pecas != null) {
             tfTempMerge.setText("");
             if (radioNome.isSelected()) {
@@ -151,14 +151,13 @@ public class OrdenarController implements Initializable {
 
         }
 
-        
     }
 
     @FXML
     private void btnOrdenarQuick(ActionEvent event) {
 
         long inicio;
-        
+
         if (pecas != null) {
             tfTempQuick.setText("");
             if (radioNome.isSelected()) {
@@ -223,19 +222,21 @@ public class OrdenarController implements Initializable {
 
         ArrayList<Peca> tabelas = new ArrayList();
 
-        for (Peca peca : pecasTable) {
-            Peca tabela = new Peca();
-            tabela.setId(peca.getId());
-            tabela.setNome(peca.getNome());
-            tabela.setMarca(peca.getMarca());
-            tabela.setModelo(peca.getModelo());
-            tabela.setPreco(peca.getPreco());
-            tabelas.add(tabela);
+        for (int i = 0; i < pecasTable.length; i++) {
+
+            if (pecasTable[i] != null) {
+                Peca tabela = new Peca();
+                tabela.setId(pecasTable[i].getId());
+                tabela.setNome(pecasTable[i].getNome());
+                tabela.setMarca(pecasTable[i].getMarca());
+                tabela.setModelo(pecasTable[i].getModelo());
+                tabela.setPreco(pecasTable[i].getPreco());
+                tabelas.add(tabela);
+            }
+
         }
 
         return tabelas;
     }
-
-   
 
 }

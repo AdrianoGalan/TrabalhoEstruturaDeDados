@@ -45,7 +45,7 @@
                               <Insets bottom="10.0" left="5.0" right="5.0" />
                            </VBox.margin>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#btnInserirDeletar" prefHeight="54.0" prefWidth="191.0" text="Inserir / Deletar">
+                        <Button mnemonicParsing="false" onAction="#btnInserirDeletar" prefHeight="54.0" prefWidth="191.0" text="Inserir / Deletar / Atualizar">
                            <VBox.margin>
                               <Insets bottom="10.0" left="5.0" right="5.0" />
                            </VBox.margin>

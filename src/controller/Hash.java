@@ -27,7 +27,7 @@ public class Hash {
     // insere um elemento na haspmap
     public void put(Peca elemento) {
 
-        if (elemento.getId() >= idsLength) {
+        while(elemento.getId() >= idsLength) {
 
             capacity();
 
@@ -73,6 +73,15 @@ public class Hash {
 
     }
 
+    public void remove(Peca peca){
+        
+        ids[peca.getId()] = null;
+        key = callKell(peca.getNome());
+        elementos[key].remove(peca.getId());
+        numeroElementos--;
+        
+    }
+    
     // calcula a chave usando o nome da peça
     private int callKell(String nome) {
 
@@ -89,7 +98,7 @@ public class Hash {
 
     private void capacity() {
 
-        int novoIdsLength = idsLength + (idsLength / 4);
+        int novoIdsLength = idsLength + (idsLength / 2);
 
         Peca[] novoIds = new Peca[novoIdsLength];
 
