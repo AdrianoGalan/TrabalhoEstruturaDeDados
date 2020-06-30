@@ -51,7 +51,7 @@ public class CodigoController implements Initializable {
 
     @FXML
     private void btnAbrirArquivo(ActionEvent event) {
-        
+
         abrirArquivo();
     }
 
@@ -78,7 +78,8 @@ public class CodigoController implements Initializable {
 
             TableFie tabela = new TableFie();
 
-            tabela.setNome(arquivos.get(i).toString());
+            //  tabela.setNome(arquivos.get(i).toString());
+            tabela.setNome(nomeArquivo(arquivos.get(i).toString()));
 
             tabelas.add(tabela);
 
@@ -86,8 +87,8 @@ public class CodigoController implements Initializable {
 
         return tabelas;
     }
-    
-        private void abrirArquivo() {
+
+    private void abrirArquivo() {
 
         TableFie arqSelecionado = tbArquivos.getSelectionModel().getSelectedItem();
         String nome;
@@ -97,7 +98,7 @@ public class CodigoController implements Initializable {
             if (arqSelecionado != null) {
                 nome = arqSelecionado.getNome();
 
-                rw.openFile(nome, "codigos/");
+                rw.openFile(nome + ".txt", "codigos/");
 
                 iniciaTablelaArquivos();
 
@@ -107,6 +108,14 @@ public class CodigoController implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(GerarController.class.getName()).log(Level.SEVERE, null, ex);
         }
+
+    }
+
+    private String nomeArquivo(String nome) {
+
+        nome = nome.substring(0, nome.length() - 4);
+
+        return nome;
 
     }
 

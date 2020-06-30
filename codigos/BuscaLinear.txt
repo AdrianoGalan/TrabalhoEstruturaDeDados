@@ -1,0 +1,41 @@
+ public Peca buscaLinear(Peca[] pecas, String nome) {
+
+        long inicio = System.currentTimeMillis();
+
+        int tamanho = pecas.length;
+
+        for (int j = 0; j < tamanho; j++) {
+
+            if (pecas[j] != null) {
+                if (pecas[j].getNome().equals(nome)) {
+
+                    tempoBuscaL = System.currentTimeMillis() - inicio;
+                    return pecas[j];
+                }
+            }
+        }
+
+        tempoBuscaL = System.currentTimeMillis() - inicio;
+        return null;
+
+    }
+
+    public Peca buscaLinear(Peca[] pecas, int id) {
+
+        long inicio = System.currentTimeMillis();
+
+        int tamanho = pecas.length;
+
+        for (int j = 0; j < tamanho; j++) {
+
+            if (pecas[j].getId() == id) {
+
+                tempoBuscaL = System.currentTimeMillis() - inicio;
+                return pecas[j];
+            }
+        }
+
+        tempoBuscaL = System.currentTimeMillis() - inicio;
+        return null;
+
+    }

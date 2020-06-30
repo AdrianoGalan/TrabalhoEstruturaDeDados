@@ -325,7 +325,7 @@ public class InserirDeletarController implements Initializable {
         String nome = ArquivoAtual.getNome();
 
         nome = nome.substring(0, nome.length() - 4);
-        System.out.println(nome);
+       
         
         return nome;
 

@@ -1,0 +1,55 @@
+ public Peca[] insertionSortId(Peca[] pecas) {
+        int it, j;
+        Peca carta;
+
+        inicio = System.currentTimeMillis();
+
+        for (it = 1; it < pecas.length; it++) {
+
+            carta = pecas[it];
+
+            for (j = it - 1; j >= 0 && pecas[j].getId() > carta.getId(); j--) {
+
+                pecas[j + 1] = pecas[j];
+
+            }
+
+            pecas[j + 1] = carta;
+
+        }
+
+        fim = System.currentTimeMillis();
+
+        tempoOrdenar = fim - inicio;
+
+        return pecas;
+
+    }
+
+    public Peca[] insertionSortName(Peca[] pecas) {
+        int it, j;
+        Peca carta;
+
+        inicio = System.currentTimeMillis();
+
+        for (it = 1; it < pecas.length; it++) {
+
+            carta = pecas[it];
+
+            for (j = it - 1; j >= 0 && pecas[j].getNome().compareTo(carta.getNome()) > 0; j--) {
+
+                pecas[j + 1] = pecas[j];
+
+            }
+
+            pecas[j + 1] = carta;
+
+        }
+
+        fim = System.currentTimeMillis();
+
+        tempoOrdenar = fim - inicio;
+
+        return pecas;
+
+    }

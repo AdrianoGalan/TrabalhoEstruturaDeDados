@@ -1,0 +1,78 @@
+    public Peca[] quickSort(Peca[] pecas, int inic, int f, int tipo) {
+
+        inicio = System.currentTimeMillis();
+        int pivo;
+
+        if (inic > f) {
+
+            return pecas;
+        }
+        if (tipo == 0) {
+            pivo = partitionNome(pecas, inic, f);
+        } else {
+            pivo = partition(pecas, inic, f);
+        }
+        quickSort(pecas, inic, pivo - 1, tipo);
+        quickSort(pecas, pivo + 1, f, tipo);
+
+        fim = System.currentTimeMillis();
+        tempoOrdenar = fim - inicio;
+        return pecas;
+
+    }
+
+    private int partitionNome(Peca[] pecas, int inicio, int fim) {
+        Peca ref, temp;
+        int up, down;
+        ref = pecas[inicio];
+        down = inicio;
+        up = fim;
+        while (down < up) {
+            // encontrando um numero maior que o pivo (ref)
+            // while (pecas[down].getId() <= ref.getId() && down < fim) {
+            while (pecas[down].getNome().compareTo(ref.getNome()) <= 0 && down < fim) {
+                down++; // avanço pq quero encontrar um valor maior
+            }
+            // tambem quero encontrar a partir do fim um valor menor que o meu de referencia
+            // while (pecas[up].getId() > ref.getId()) {
+            while (pecas[up].getNome().compareTo(ref.getNome()) > 0) {
+                up--;
+            }
+            if (down < up) {  // eles não se cruzaram nos índices
+                //troca
+                temp = pecas[down];
+                pecas[down] = pecas[up];
+                pecas[up] = temp;
+            }
+        }
+        pecas[inicio] = pecas[up];
+        pecas[up] = ref;
+        return up; // no final das contas é a posição de UP que denota onde está o pivô
+    }
+
+    private int partition(Peca[] pecas, int inicio, int fim) {
+        Peca ref, temp;
+        int up, down;
+        ref = pecas[inicio];
+        down = inicio;
+        up = fim;
+        while (down < up) {
+            // encontrando um numero maior que o pivo (ref)
+            while (pecas[down].getId() <= ref.getId() && down < fim) {
+                down++; // avanço pq quero encontrar um valor maior
+            }
+            // tambem quero encontrar a partir do fim um valor menor que o meu de referencia
+            while (pecas[up].getId() > ref.getId()) {
+                up--;
+            }
+            if (down < up) {  // eles não se cruzaram nos índices
+                //troca
+                temp = pecas[down];
+                pecas[down] = pecas[up];
+                pecas[up] = temp;
+            }
+        }
+        pecas[inicio] = pecas[up];
+        pecas[up] = ref;
+        return up; // no final das contas é a posição de UP que denota onde está o pivô
+    }

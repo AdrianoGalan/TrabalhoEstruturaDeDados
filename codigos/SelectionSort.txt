@@ -1,0 +1,68 @@
+   public Peca[] selectionSortId(Peca[] pecas) {
+
+        inicio = System.currentTimeMillis();
+
+        Peca temp;
+        int it;
+        int posMenorInicial;
+        int posMenor;
+        int i;
+        for (it = 0; it < pecas.length - 1; it++) {
+            posMenorInicial = it;
+            posMenor = it + 1;
+            for (i = posMenorInicial + 1; i < pecas.length; i++) {
+                if (pecas[i].getId() < pecas[posMenor].getId()) {
+                    posMenor = i;
+                }
+            }
+            if (pecas[posMenor].getId() < pecas[posMenorInicial].getId()) {
+                // troca
+                temp = pecas[posMenorInicial];
+                pecas[posMenorInicial] = pecas[posMenor];
+                pecas[posMenor] = temp;
+            }
+
+        }
+
+        fim = System.currentTimeMillis();
+
+        tempoOrdenar = fim - inicio;
+
+        return pecas;
+    }
+
+    public Peca[] selectionSortNome(Peca[] pecas) {
+
+        inicio = System.currentTimeMillis();
+
+        Peca temp;
+        int it;
+        int posMenorInicial;
+        int posMenor;
+        int i;
+        for (it = 0; it < pecas.length - 1; it++) {
+            posMenorInicial = it;
+            posMenor = it + 1;
+            for (i = posMenorInicial + 1; i < pecas.length; i++) {
+                if (pecas[i] != null) {
+                    if (pecas[i].getNome().compareTo(pecas[posMenor].getNome()) < 0) {
+                        posMenor = i;
+                    }
+                }
+            }
+            //   if (pecas[posMenor].getId() < pecas[posMenorInicial].getId()) {
+            if (pecas[posMenor].getNome().compareTo(pecas[posMenorInicial].getNome()) < 0) {
+                // troca
+                temp = pecas[posMenorInicial];
+                pecas[posMenorInicial] = pecas[posMenor];
+                pecas[posMenor] = temp;
+            }
+
+        }
+
+        fim = System.currentTimeMillis();
+
+        tempoOrdenar = fim - inicio;
+
+        return pecas;
+    }

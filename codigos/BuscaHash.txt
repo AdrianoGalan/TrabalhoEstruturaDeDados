@@ -1,0 +1,23 @@
+public Peca search(String nome) {
+
+        long inicio = System.currentTimeMillis();
+
+        key = callKell(nome);
+
+        if (elementos[key] == null) {
+            return null;
+        }
+
+        Peca busca = elementos[key].search(nome);
+
+        if (busca == null) {
+            long fim = System.currentTimeMillis();
+            tempoBusca = (int) (fim - inicio);
+            return null;
+        }
+
+        long fim = System.currentTimeMillis();
+        tempoBusca = fim - inicio;
+        return busca;
+
+    }
