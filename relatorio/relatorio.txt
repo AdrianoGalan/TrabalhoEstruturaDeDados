@@ -1,120 +1,19 @@
->>>Gerar massa dados<<<
-Mon Jun 29 17:31:03 BRT 2020
-Numero de elementos 1000
-Tempo de execução 17 ms
---------------------------------------
 
->>>Ordena Quick Sort<<<
-Mon Jun 29 17:42:23 BRT 2020
-Numero de elementos: 10000
-Tempo de execução: 22 ms
---------------------------------------
-
->>>Ordena Merge Sort<<<
-Mon Jun 29 17:42:25 BRT 2020
-Numero de elementos: 10000
-Tempo de execução: 38 ms
---------------------------------------
-
->>>Ordena Insertion Sort<<<
-Mon Jun 29 17:42:27 BRT 2020
-Numero de elementos: 10000
-Tempo de execução: 253 ms
---------------------------------------
-
->>>Ordena Selection Sort<<<
-Mon Jun 29 17:42:30 BRT 2020
-Numero de elementos: 10000
-Tempo de execução: 566 ms
---------------------------------------
-
->>>Ordena Bubble Sort<<<
-Mon Jun 29 17:42:33 BRT 2020
-Numero de elementos: 10000
-Tempo de execução: 1370 ms
+>>>Carregar Arquivo<<<
+Wed Jul 01 00:45:33 BRT 2020
+Numero de elementos: 200000
+Tempo de execução: 12935 ms
 --------------------------------------
 
 >>>Carregar Arquivo<<<
-Mon Jun 29 17:47:59 BRT 2020
-Numero de elementos: 30000
-Tempo de execução: 415 ms
---------------------------------------
-
->>>Busca HashMap por Id<<<
-Mon Jun 29 17:48:27 BRT 2020
-Numero de elementos: 30000
-Tempo de execução: 0 ms
---------------------------------------
-
->>>Busca Linear por Id<<<
-Mon Jun 29 17:48:27 BRT 2020
-Numero de elementos: 30000
-Tempo de execução: 2 ms
---------------------------------------
-
->>>Busca Binaria por Id<<<
-Mon Jun 29 17:48:27 BRT 2020
-Numero de elementos: 30000
-Tempo de execução: 46 ms
---------------------------------------
-
->>>Busca HashMap por Id<<<
-Mon Jun 29 17:48:36 BRT 2020
-Numero de elementos: 30000
-Tempo de execução: 0 ms
---------------------------------------
-
->>>Busca Linear por Id<<<
-Mon Jun 29 17:48:36 BRT 2020
-Numero de elementos: 30000
-Tempo de execução: 0 ms
---------------------------------------
-
->>>Busca Binaria por Id<<<
-Mon Jun 29 17:48:36 BRT 2020
-Numero de elementos: 30000
-Tempo de execução: 5 ms
---------------------------------------
-
->>>Busca HashMap por Nome<<<
-Mon Jun 29 17:48:45 BRT 2020
-Numero de elementos: 30000
-Tempo de execução: 0 ms
---------------------------------------
-
->>>Busca Linear por Nome<<<
-Mon Jun 29 17:48:45 BRT 2020
-Numero de elementos: 30000
-Tempo de execução: 4 ms
---------------------------------------
-
->>>Busca Binaria por Nome<<<
-Mon Jun 29 17:48:45 BRT 2020
-Numero de elementos: 30000
-Tempo de execução: 19 ms
---------------------------------------
-
->>>Carregar Arquivo<<<
-Mon Jun 29 18:06:39 BRT 2020
-Numero de elementos: 1000
-Tempo de execução: 29 ms
---------------------------------------
-
->>>Ordena Quick Sort<<<
-Mon Jun 29 18:06:43 BRT 2020
-Numero de elementos: 1000
-Tempo de execução: 4 ms
+Wed Jul 01 00:45:58 BRT 2020
+Numero de elementos: 100000
+Tempo de execução: 5215 ms
 --------------------------------------
 
 >>>Gerar massa dados<<<
-Mon Jun 29 18:06:54 BRT 2020
-Numero de elementos: 10000
-Tempo de execução: 713 ms
---------------------------------------
-
->>>Gerar massa dados<<<
-Mon Jun 29 18:08:58 BRT 2020
+Wed Jul 01 01:37:43 BRT 2020
 Numero de elementos: 10
-Tempo de execução: 1 ms
+Tempo de execução: 3 ms
 --------------------------------------
 

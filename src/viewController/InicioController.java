@@ -33,14 +33,21 @@ public class InicioController implements Initializable {
     }    
 
     @FXML
-    private void btnTrabalho(ActionEvent event) {
-    }
+    private void btnTrabalho(ActionEvent event) throws IOException {
+          
+        try {
+            java.awt.Desktop.getDesktop().browse( new java.net.URI( "https://docs.google.com/document/d/1LK4gqA_Cad3dWXFo7Y2CDvrdpSR-TrwPMkPhBMFJBBQ/edit?usp=sharing" ) );
+        } catch (URISyntaxException ex) {
+            Logger.getLogger(InicioController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        }
 
     @FXML
     private void btnGit(ActionEvent event) throws IOException {
         
         try {
-            java.awt.Desktop.getDesktop().browse( new java.net.URI( "https://github.com/AdrianoGalan/TrabalhoEstruturaDeDados.git" ) );
+            java.awt.Desktop.getDesktop().browse( new java.net.URI( "https://github.com/AdrianoGalan/TrabalhoEstruturaDeDados" ) );
         } catch (URISyntaxException ex) {
             Logger.getLogger(InicioController.class.getName()).log(Level.SEVERE, null, ex);
         }
