@@ -17,3 +17,51 @@ Numero de elementos: 10
 Tempo de execução: 3 ms
 --------------------------------------
 
+>>>Carregar Arquivo<<<
+Wed Jul 01 01:49:02 BRT 2020
+Numero de elementos: 10
+Tempo de execução: 6 ms
+--------------------------------------
+
+>>>Busca HashMap por Id<<<
+Wed Jul 01 01:49:09 BRT 2020
+Numero de elementos: 10
+Tempo de execução: 0 ms
+--------------------------------------
+
+>>>Busca Linear por Id<<<
+Wed Jul 01 01:49:09 BRT 2020
+Numero de elementos: 10
+Tempo de execução: 0 ms
+--------------------------------------
+
+>>>Busca Binaria por Id<<<
+Wed Jul 01 01:49:09 BRT 2020
+Numero de elementos: 10
+Tempo de execução: 0 ms
+--------------------------------------
+
+>>>Busca HashMap por Nome<<<
+Wed Jul 01 01:49:24 BRT 2020
+Numero de elementos: 10
+Tempo de execução: 0 ms
+--------------------------------------
+
+>>>Busca Linear por Nome<<<
+Wed Jul 01 01:49:24 BRT 2020
+Numero de elementos: 10
+Tempo de execução: 0 ms
+--------------------------------------
+
+>>>Busca Binaria por Nome<<<
+Wed Jul 01 01:49:24 BRT 2020
+Numero de elementos: 10
+Tempo de execução: 0 ms
+--------------------------------------
+
+>>>Gerar massa dados<<<
+Wed Jul 01 01:49:52 BRT 2020
+Numero de elementos: 10
+Tempo de execução: 1 ms
+--------------------------------------
+
