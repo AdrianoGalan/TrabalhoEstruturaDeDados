@@ -30,27 +30,27 @@ public class InicioController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
 
     @FXML
     private void btnTrabalho(ActionEvent event) throws IOException {
-          
+
         try {
-            java.awt.Desktop.getDesktop().browse( new java.net.URI( "https://docs.google.com/document/d/1LK4gqA_Cad3dWXFo7Y2CDvrdpSR-TrwPMkPhBMFJBBQ/edit?usp=sharing" ) );
+            java.awt.Desktop.getDesktop().browse(new java.net.URI("https://drive.google.com/file/d/1dMKPxERah1yiqLtjRY9vZsnpWKQkTGd3/view?usp=sharing"));
         } catch (URISyntaxException ex) {
             Logger.getLogger(InicioController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        }
+
+    }
 
     @FXML
     private void btnGit(ActionEvent event) throws IOException {
-        
+
         try {
-            java.awt.Desktop.getDesktop().browse( new java.net.URI( "https://github.com/AdrianoGalan/TrabalhoEstruturaDeDados" ) );
+            java.awt.Desktop.getDesktop().browse(new java.net.URI("https://github.com/AdrianoGalan/TrabalhoEstruturaDeDados"));
         } catch (URISyntaxException ex) {
             Logger.getLogger(InicioController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }
 }
